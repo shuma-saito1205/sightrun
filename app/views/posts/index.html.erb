@@ -1,0 +1,10 @@
+<% @posts.each do |post| %>
+  <div>
+    <p>User pic：<%= image_tag 'sample-author1.jpg' %></p>
+    <p>User name：<%= post.user.name %></p>
+    <p>Title：<%= link_to post_path(post.id) do %>
+      <%= post.title %>
+    <% end %></p>
+    <p>Body：<%= post.body %></p>
+  </div>
+<% end %>
