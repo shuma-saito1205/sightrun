@@ -20,6 +20,13 @@ class UsersController < ApplicationController
   def index
   end
 
+  def destroy
+    user = User.find(params[:id])
+    user.destroy
+    redirect_to new_user_registration_path
+  end
+
+
   private
 
   def user_params

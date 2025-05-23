@@ -1,5 +1,5 @@
 <div>
-  <p>User pic：<%= image_tag 'sample-author1.jpg' %></p>
+  <p>User pic：<%= image_tag @post.user.get_profile_image(100,100) %></p>
   <p>User name：<%= @post.user.name %></p>
   <p>title：<%= @post.title %></p>
   <p>body：<%= @post.body %></p>
