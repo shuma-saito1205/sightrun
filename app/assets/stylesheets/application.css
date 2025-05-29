@@ -15,6 +15,6 @@
  */
 
  body {
-  background-image: url('run3.jpg');
-  background-size: cover; /* 画像をウィンドウ全体に広げる */
-}
+  background-image: image-url("run3.jpg");
+  background-size: cover;
+ }
