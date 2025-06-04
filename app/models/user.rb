@@ -18,17 +18,17 @@ class User < ApplicationRecord
     profile_image.variant(resize_to_limit: [width, height]).processed
   end
 
-  def self.looks(content, method)
-    if method == "perfect"
-      User.where(name: content)
-    elsif method == "forward"
-      User.where('name LIKE ?', content + '%')
-    elsif method == "backward"
-      User.where('name LIKE ?', '%' + content)
-    elsif method == "partial"
-      User.where('name LIKE ?', '%' + content + '%')
+  def self.looks(search, word)
+    if search == "perfect_match"
+      @user = User.where("name LIKE?", "#{word}")
+    elsif search == "forward_match"
+      @user = User.where("name LIKE?","#{word}%")
+    elsif search == "backward_match"
+      @user = User.where("name LIKE?","%#{word}")
+    elsif search == "partial_match"
+      @user = User.where("name LIKE?","%#{word}%")
     else
-      User.all
+      @user = User.all
     end
   end
 

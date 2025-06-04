@@ -3,15 +3,17 @@ class Post < ApplicationRecord
   validates :title, presence: true
   validates :body, presence: true
 
-  def self.search_for(content, method)
-    if method == 'perfect'
-      Book.where(title: content)
-    elsif method == 'forward'
-      Book.where('name LIKE ?', content + '%')
-    elsif method == 'backward'
-      Book.where('name LIKE ?', '%' + content)
+  def self.looks(search, word)
+    if search == "perfect_match"
+      @post = Post.where("title LIKE?","#{word}")
+    elsif search == "forward_match"
+      @post = Post.where("title LIKE?","#{word}%")
+    elsif search == "backward_match"
+      @post = Post.where("title LIKE?","%#{word}")
+    elsif search == "partial_match"
+      @post = Post.where("title LIKE?","%#{word}%")
     else
-      Book.where('name LIKE ?', '%' + content + '%')
+      @post = Post.all
     end
   end
   
