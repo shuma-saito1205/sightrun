@@ -27,6 +27,9 @@
         <li>
           <%= link_to "My page", user_path(current_user.id) %>
         </li>
+        <div class="d-flex justify-content-center mb-2">
+          <%= render "searches/search" %>
+        </div>
       <% else %>
         <li>
           <%= link_to "Sign up", new_user_registration_path %>
