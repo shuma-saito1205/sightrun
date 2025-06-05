@@ -2,6 +2,13 @@ Rails.application.routes.draw do
   devise_for :admin, skip: [:registrations, :password], controllers: {
     sessions: 'admin/sessions'
   } #adminのdeviseは新規登録とパスワード機能を無効。admin/sign_imで管理者ログイン。
+
+  namespace :admin do 
+    get 'dashboards', to: 'dashboards#index'
+    resources :users, only: [:destroy]
+  end
+  #/admin/dashboardsにアクセスするとindexアクション処理。
+
   root to: 'homes#top'
   get 'homes/about' => 'homes#about', as: 'about'
   devise_for :users
