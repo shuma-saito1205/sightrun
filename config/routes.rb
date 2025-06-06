@@ -5,8 +5,10 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get 'dashboards', to: 'dashboards#index'
+    get '/' => 'homes#top'
     resources :users, only: [:show, :destroy]
   end
+
   get 'new/index'
   root to: 'homes#top'
   get 'homes/about' => 'homes#about', as: 'about'
