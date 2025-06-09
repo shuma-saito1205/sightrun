@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     get 'dashboards', to: 'dashboards#index'
     get '/' => 'homes#top'
     resources :users, only: [:show, :destroy]
+    resources :post_comments, only: [:index, :destroy]
   end
 
   get 'new/index'
