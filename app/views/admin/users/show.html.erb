@@ -1,0 +1,15 @@
+<div>
+  <h3><%= @user.name %></h3>
+  <%= image_tag @user.get_profile_image(100,100) %>
+  <p><%= link_to "Delete", admin_user_path(@user), method: :delete, data: { confirm: 'Are you sure you want to delete?' } %></p>
+</div>
+<% @posts.each do |post| %>
+  <div>
+    <p>User name：<%= post.user.name %></p> 
+    <p>Title：<%= link_to post_path(post.id) do %>
+      <%= post.title %>
+    <% end %></p>
+    <p>Body：<%= post.body %></p>
+    <p><%= link_to "#{post.post_comments.count} comment", post_path(post.id) %></p>
+  </div>
+<% end %>
