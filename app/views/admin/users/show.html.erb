@@ -6,10 +6,8 @@
 <% @posts.each do |post| %>
   <div>
     <p>User name：<%= post.user.name %></p> 
-    <p>Title：<%= link_to post_path(post.id) do %>
-      <%= post.title %>
-    <% end %></p>
+    <p>Title：<%= post.title %></p>
     <p>Body：<%= post.body %></p>
-    <p><%= link_to "#{post.post_comments.count} comment", post_path(post.id) %></p>
+    <p><%= "#{post.post_comments.count} comment" %></p>
   </div>
 <% end %>
