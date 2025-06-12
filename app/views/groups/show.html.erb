@@ -1,0 +1,7 @@
+<h1>Group show</h1>
+
+<p>Group name：<%= @group.name %></p>
+<p>Group theme：<%= @group.theme %></p>
+<% if @group.owner_id == current_user.id %>
+    <%= link_to "Edit", edit_group_path(@group) %>
+<% end %>
