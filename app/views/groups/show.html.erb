@@ -2,6 +2,17 @@
 
 <p>Group name：<%= @group.name %></p>
 <p>Group theme：<%= @group.theme %></p>
+
+<% @group.users.each do |member| %>
+    ・<%= member.name %>
+<% end %>
+
 <% if @group.owner_id == current_user.id %>
-    <%= link_to "Edit", edit_group_path(@group) %>
+  <%= link_to "Edit", edit_group_path(@group) %>
+<% else %>
+  <% if @group.group_users.exists?(user_id: current_user.id) %>
+    <%= link_to 'Leave this group', group_group_users_path(@group), method: :delete, data: {confirm: "Are you sure you want to without?"} %>
+  <% else %>
+    <%= link_to 'Join this group',group_group_users_path(@group), method: :post %>
+  <% end %>
 <% end %>
