@@ -57,7 +57,8 @@ class GroupsController < ApplicationController
   def ensure_correct_user
     @group = Group.find(params[:id])
     unless @group.owner_id == current_user.id
-      redirect_to group_path(@group), alert: "Only the group owner can edit it."
+      redirect_to group_path(@group), alert: "Only the group owner can edit it.
+      "
     end
   end
 
