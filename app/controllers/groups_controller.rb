@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
   before_action :authenticate_user!
-  before_action :ensure_correct_user, only: [:edit, :update, :destroy, :permits]
+  before_action :ensure_correct_user, only: [:edit, :update, :permits]
 
   def index
     @groups = Group.all
@@ -45,7 +45,7 @@ class GroupsController < ApplicationController
   
   def permits
     @group = Group.find(params[:id])
-    @permits = @group.permits.page(params[:page])
+    @permits = @group.permits.all
   end
 
   private
@@ -57,8 +57,7 @@ class GroupsController < ApplicationController
   def ensure_correct_user
     @group = Group.find(params[:id])
     unless @group.owner_id == current_user.id
-      redirect_to group_path(@group), alert: "Only the group owner can edit it.
-      "
+      redirect_to group_path(@group), alert: "Only the group owner can edit it."
     end
   end
 
