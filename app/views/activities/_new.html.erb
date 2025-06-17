@@ -1,0 +1,9 @@
+<h3>・New activity</h3>
+<%= form_with model: activity do |f| %>
+  <%= f.label :mileage %>
+  <%= f.number_field :mileage, min: 0, step: "0.01" %>
+
+  <%= f.label :hour %>
+  <%= f.text_field :hour, placeholder: 'hh:mm:ss' %>
+  <%= f.submit 'Submit' %>
+<% end %>

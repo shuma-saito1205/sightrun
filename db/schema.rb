@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 2025_06_17_024326) do
   create_table "activities", force: :cascade do |t|
     t.integer "user_id"
     t.float "mileage"
-    t.time "hour"
+    t.string "hour"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

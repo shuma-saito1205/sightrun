@@ -3,7 +3,7 @@ class CreateActivities < ActiveRecord::Migration[6.1]
     create_table :activities do |t|
       t.integer :user_id
       t.float :mileage
-      t.time :hour
+      t.string :hour
       
       t.timestamps
     end
