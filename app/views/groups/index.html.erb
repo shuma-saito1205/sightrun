@@ -1,0 +1,7 @@
+<% @groups.each do |group| %>
+  <p>Group name：<%= link_to group_path(group.id) do %>
+    <%= group.name %>
+  <% end %>
+  <%= group.group_users.count %>
+<% end %>
+<p><%= link_to "Group new", new_group_path %></p>

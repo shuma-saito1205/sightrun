@@ -1,0 +1,23 @@
+<h1>Group show</h1>
+
+<p>Group name：<%= @group.name %></p>
+<p>Group theme：<%= @group.theme %></p>
+
+<% @group.users.each do |member| %>
+    ・<%= member.name %>
+<% end %>
+
+<% if @group.owner_id == current_user.id %>
+  オーナー専用
+  <%= link_to 'Edit', edit_group_path(@group) %>
+  <%= link_to 'Delete', group_path(@group), method: :delete, data: {confirm: "Are you sure you want to Delete?"} %>
+  <%= link_to '承認待ち一覧', group_permits_path(@group) %>
+<% else %>
+  <% if @group.group_users.exists?(user_id: current_user.id) %>
+    <%= link_to 'Leave this group', group_group_users_path(@group), method: :delete, data: {confirm: "Are you sure you want to without?"} %>
+  <% elsif @group.permits.exists?(user_id: current_user.id)  %>
+    <%= link_to '申請取消', group_permit_path(@group), method: :delete %>
+  <% else %>
+    <%= link_to '参加申請', group_permits_path(@group), method: :post %>
+  <% end %>
+<% end %>

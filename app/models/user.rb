@@ -6,6 +6,10 @@ class User < ApplicationRecord
          
   has_many :posts, dependent: :destroy
   has_many :post_comments, dependent: :destroy
+  has_many :group_users, dependent: :destroy
+  has_many :permits, dependent: :destroy
+  has_many :groups, through: :group_users
+  
   has_one_attached :profile_image
 
   validates :email, presence: true
