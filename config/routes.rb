@@ -15,10 +15,11 @@ Rails.application.routes.draw do
   get 'homes/about' => 'homes#about', as: 'about'
   get "search" => "searches#search"
   devise_for :users
+  resources :users, only: [:show, :edit, :index, :update, :destroy]
+  resources :activities, only: [:new, :create, :index]
   resources :posts do
     resources :post_comments, only: [:new, :create, :index, :destroy]
   end
-  resources :users, only: [:show, :edit, :index, :update, :destroy]
   resources :groups do
     resources :permits, only: [:create, :destroy]
     resource :group_users, only: [:create, :destroy]
