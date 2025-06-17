@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   get "search" => "searches#search"
   devise_for :users
   resources :users, only: [:show, :edit, :index, :update, :destroy]
-  resources :activities, only: [:new, :create, :index]
+  resources :activities, only: [:new, :create, :index, :edit, :update, :destroy]
   resources :posts do
     resources :post_comments, only: [:new, :create, :index, :destroy]
   end

@@ -2,13 +2,17 @@
 <%= render 'new', activity: @activity %>
 
 <h3>・Total activity<h3>
-<%= "#{@total_mileage} km, #{@total_hour} 時間" %>
+<%= "#{@total_mileage} km    #{@total_time} " %>
 
 <h3>・Activity index</h3>
 <% if @activities.present? %>
   <% @activities.each do |activity| %>
-    <p>投稿日：<%= activity.created_at.strftime('%Y/%m/%d') %></p>
-    <%= activity.mileage %> km, <%= activity.hour %> 時間
+    <%= activity.mileage %> km 
+    <% hours = '%02d' % (activity.hour.to_i / 3600) %>
+    <% minutes = '%02d' % ((activity.hour.to_i % 3600) / 60) %>
+    <% seconds = '%02d' % (activity.hour.to_i % 60) %>
+    <%= hours %>:<%= minutes %>:<%= seconds %>
+    <p>Date：<%= activity.created_at.strftime('%Y/%m/%d') %></p>
   <% end %>
 <% else %>
   <p>No activity</p>
