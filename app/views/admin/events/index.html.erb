@@ -1,0 +1,7 @@
+<h1>Event calendar</h1>
+<%= link_to 'New event', new_admin_event_path %>
+<script>
+  let eventData = <%= raw @events.to_json %>;
+</script>
+
+<div id="calendar"></div>

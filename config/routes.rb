@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     get '/' => 'homes#top'
     resources :users, only: [:show, :destroy]
     resources :post_comments, only: [:index, :destroy]
+    resources :events, only: [:new, :index, :create]
+    get '/events', to: 'events#index', defaults: { format: 'json' }
   end
 
   get 'new/index'

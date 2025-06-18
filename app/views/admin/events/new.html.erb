@@ -1,0 +1,11 @@
+<h1>New event</h1>
+<%= form_with model: @event, url: admin_events_path, method: :post do |f| %>
+  <h3>・Title</h3>
+  <%= f.text_field :title %>
+  <h3>・Ditail</h3>
+  <%= f.text_field :detail %>
+  <h3>・Schedule</h3>
+  <%= f.datetime_select :start_date, options: { ampm: true } %><br>
+  <%= f.datetime_select :end_date, options: { ampm: true } %>
+  <%= f.submit 'create' %>
+<% end %>

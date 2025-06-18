@@ -61,9 +61,12 @@ ActiveRecord::Schema.define(version: 2025_06_18_020430) do
   end
 
   create_table "events", force: :cascade do |t|
+    t.integer "admin_id"
     t.string "title"
-    t.datetime "start"
-    t.datetime "end"
+    t.text "detail"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.string "location"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
