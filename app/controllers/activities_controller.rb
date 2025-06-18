@@ -37,26 +37,10 @@ class ActivitiesController < ApplicationController
     @total_time = "#{total_hours}:#{total_minutes}:#{total_seconds}"
   end
 
-  def edit
-    @activity = Activity.find(params[:id])
-  end
-
-  def update
-    @activity = Activity.find(params[:id])
-    if @activity.update(activity_params)
-      redirect_to activities_path
-    else
-      render 'edit'
-    end
-  end
-
   def destroy
-    activity = Activiy.find(params[:id])
-    if activity.destroy
-      redirect_to activities_path
-    else
-      render 'edit'
-    end
+    activity = Activity.find(params[:id])
+    activity.destroy
+    redirect_to activities_path
   end
   
   private

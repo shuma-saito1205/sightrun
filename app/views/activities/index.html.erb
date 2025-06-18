@@ -13,6 +13,7 @@
     <% seconds = '%02d' % (activity.hour.to_i % 60) %>
     <%= hours %>:<%= minutes %>:<%= seconds %>
     <p>Date：<%= activity.created_at.strftime('%Y/%m/%d') %></p>
+    <%= link_to 'Delete', activity_path(activity), method: :delete, data: {confirm: "Are you sure you want to delete?"} %><br>
   <% end %>
 <% else %>
   <p>No activity</p>
