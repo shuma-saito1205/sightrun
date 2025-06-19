@@ -7,5 +7,7 @@
   <h3>・Schedule</h3>
   <%= f.datetime_select :start_date, options: { ampm: true } %><br>
   <%= f.datetime_select :end_date, options: { ampm: true } %>
+  <h3>・Location</h3>
+  <%= f.text_field :location %>
   <%= f.submit 'create' %>
 <% end %>

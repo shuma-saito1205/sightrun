@@ -10,7 +10,10 @@ class Admin::EventsController < ApplicationController
     @event = Event.new(event_params)
     @event.admin_id = current_admin.id
     @event.save
-    redirect_to admin_events_path
+    respond_to do |format|
+      format.html
+      format.json { render 'calendar' }
+    end
   end
 
   def index

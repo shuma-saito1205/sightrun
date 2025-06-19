@@ -8,8 +8,8 @@ Rails.application.routes.draw do
     get '/' => 'homes#top'
     resources :users, only: [:show, :destroy]
     resources :post_comments, only: [:index, :destroy]
-    resources :events, only: [:new, :index, :create]
-    get '/events', to: 'events#index', defaults: { format: 'json' }
+    resources :events
+    get 'events' => 'events#index'
   end
 
   get 'new/index'
@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   get 'homes/about' => 'homes#about', as: 'about'
   get "search" => "searches#search"
   devise_for :users
-  resources :events, only: [:index]
+  resources :events
   get '/events', to: 'events#index', defaults: { format: 'json' }
   resources :users, only: [:show, :edit, :index, :update, :destroy]
   resources :activities, only: [:new, :create, :index, :edit, :update, :destroy]

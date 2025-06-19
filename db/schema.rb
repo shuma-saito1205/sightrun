@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 2025_06_18_020430) do
     t.integer "admin_id"
     t.string "title"
     t.text "detail"
-    t.datetime "start_date"
+    t.datetime "start_date" 
     t.datetime "end_date"
     t.string "location"
     t.datetime "created_at", precision: 6, null: false
