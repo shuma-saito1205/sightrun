@@ -8,17 +8,11 @@ document.addEventListener('DOMContentLoaded', function() {
   var calendar = new Calendar(calendarEl, {
     plugins: [dayGridPlugin, interactionPlugin, listPlugin],
     initialView: 'dayGridMonth',
+    selectable: true,
     locale: "jp",
-    events: '/events',
-  
-    windowResize: function () {
-      if (window.innerWidth < 991.98) {
-        calendar.changeView('listMonth');
-      } else {
-        calendar.changeView('dayGridMonth');
-      }
-    },
+    events: eventData
   });
 
+  var event = calendar.getEventById('1')
   calendar.render();
 });

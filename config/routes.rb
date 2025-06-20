@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   get "search" => "searches#search"
   devise_for :users
   resources :events
-  get '/events', to: 'events#index', defaults: { format: 'json' }
+  get 'events', to: 'events#index'
   resources :users, only: [:show, :edit, :index, :update, :destroy]
   resources :activities, only: [:new, :create, :index, :edit, :update, :destroy]
   resources :posts do
