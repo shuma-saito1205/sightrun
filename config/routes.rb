@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     resources :users, only: [:show, :destroy]
     resources :post_comments, only: [:index, :destroy]
     resources :events
-    get 'events' => 'events#index'
+    get 'events', to: 'events#index'
   end
 
   get 'new/index'

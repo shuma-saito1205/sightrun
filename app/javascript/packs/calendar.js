@@ -10,9 +10,14 @@ document.addEventListener('DOMContentLoaded', function() {
     initialView: 'dayGridMonth',
     selectable: true,
     locale: "jp",
-    events: eventData
+    events: eventData,
+    eventClick: function(info) {
+      var eventId = info.event.id;
+      var path = currentUser.role === 'admin' ? '/admin/events/' + eventId : '/events/' + eventId ;
+      window.location.href = path;
+    }
   });
 
-  var event = calendar.getEventById('1')
+
   calendar.render();
 });
