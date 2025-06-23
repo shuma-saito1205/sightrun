@@ -8,13 +8,16 @@ Rails.application.routes.draw do
     get '/' => 'homes#top'
     resources :users, only: [:show, :destroy]
     resources :post_comments, only: [:index, :destroy]
+    resources :events
+    get 'events', to: 'events#index'
   end
 
-  get 'new/index'
   root to: 'homes#top'
   get 'homes/about' => 'homes#about', as: 'about'
   get "search" => "searches#search"
   devise_for :users
+  resources :events, only: [:index, :show]
+  get 'events', to: 'events#index'
   resources :users, only: [:show, :edit, :index, :update, :destroy]
   resources :activities, only: [:new, :create, :index, :edit, :update, :destroy]
   resources :posts do

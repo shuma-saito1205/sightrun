@@ -5,7 +5,7 @@
     <p>Title：<%= link_to post_path(post.id) do %>
       <%= post.title %>
     <% end %></p>
-    <p>Body：<%= post.body %></p>
+    <p>Body：<%= post.body %></p> 
     <p><%= link_to "#{post.post_comments.count} comment", post_path(post.id) %></p>
   </div>
 <% end %>
