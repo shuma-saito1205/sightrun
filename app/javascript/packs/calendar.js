@@ -13,8 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
     events: eventData,
     eventClick: function(info) {
       var eventId = info.event.id;
-      var path = currentUser.role === 'admin' ? '/admin/events/' + eventId : '/events/' + eventId ;
-      window.location.href = path;
+      window.location.href = '/events/' + eventId ;
     }
   });
 

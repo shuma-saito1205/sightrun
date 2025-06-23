@@ -14,6 +14,7 @@ class Admin::EventsController < ApplicationController
       format.html
       format.json { render 'calendar' }
     end
+    redirect_to admin_events_path
   end
 
   def index
@@ -38,10 +39,16 @@ class Admin::EventsController < ApplicationController
     redirect_to admin_event_path(event.id)
   end
 
+  def destroy
+    event = Event.find(params[:id])
+    event.destroy
+    redirect_to admin_events_path
+  end
+
   private
 
   def event_params
-  params.require(:event).permit(:title, :detail, :location, :start_date, :end_date)
+  params.require(:event).permit(:title, :detail, :location, :start, :end)
   end
 
 end
