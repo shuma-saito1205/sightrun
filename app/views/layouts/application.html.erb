@@ -27,7 +27,7 @@
           <%= link_to "My page", user_path(current_user.id) %>
         </li>
         <li>
-          <%= link_to "Event calendar", events_path %>
+          <%= link_to "Event calendar", events_path, data: {"turbolinks" => false} %>
         </li>
         <div class="d-flex justify-content-center mb-2">
           <%= render "searches/search" %>

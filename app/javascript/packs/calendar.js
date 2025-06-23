@@ -3,7 +3,8 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import listPlugin from '@fullcalendar/list';
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('turbolinks:load', function() {
+  console.log('loaded');
   var calendarEl = document.getElementById('calendar');
   var calendar = new Calendar(calendarEl, {
     plugins: [dayGridPlugin, interactionPlugin, listPlugin],
