@@ -16,8 +16,9 @@ Rails.application.routes.draw do
   get 'homes/about' => 'homes#about', as: 'about'
   get "search" => "searches#search"
   devise_for :users
-  resources :events, only: [:index, :show]
-  get 'events', to: 'events#index'
+  get '/events', to: 'events#index'
+  get 'events/:id', to: 'events#show'
+  get 'event', to: 'events#index', defaults: { format: 'json' }
   resources :users, only: [:show, :edit, :index, :update, :destroy]
   resources :activities, only: [:new, :create, :index, :edit, :update, :destroy]
   resources :posts do
@@ -28,6 +29,7 @@ Rails.application.routes.draw do
     resource :group_users, only: [:create, :destroy]
   end
   resources :favorite_courses, only: [:index]
+  resource :root, only: [:show]
   get "groups/:id/permits" => "groups#permits", as: :permits
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

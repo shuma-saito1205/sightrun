@@ -11,7 +11,8 @@ document.addEventListener('turbolinks:load', function() {
     initialView: 'dayGridMonth',
     selectable: true,
     locale: "jp",
-    events: eventData,
+    events: 'event',
+
     eventClick: function(info) {
       var eventId = info.event.id;
       window.location.href = '/events/' + eventId ;

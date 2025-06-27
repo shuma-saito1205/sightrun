@@ -1,16 +1,6 @@
 <h1>Favorite course</h1>
+<div class="container">
+  <div id="map"></div>
+</div>
 
-<div id="map" style="height: 600px;"></div>
-
-<script>
-
-  function initMap() {
-    const mapOptions = {
-      center: { lat: 35.681236, lng: 139.767125 },
-      zoom: 15
-    };
-
-    const map = new google.maps.Map(document.getElementById('map'), mapOptions);
-  }
-</script>
-<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["Maps_API_Key"] %>&callback=initMap"></script>
+<%= javascript_pack_tag 'map', 'data-turbolinks-track': 'reload' %>

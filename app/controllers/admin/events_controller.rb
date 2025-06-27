@@ -10,19 +10,11 @@ class Admin::EventsController < ApplicationController
     @event = Event.new(event_params)
     @event.admin_id = current_admin.id
     @event.save
-    respond_to do |format|
-      format.html
-      format.json { render 'calendar' }
-    end
     redirect_to admin_events_path
   end
 
   def index
     @events = Event.all
-    respond_to do |format|
-      format.html
-      format.json { render 'calendar' }
-    end
   end
 
   def show
