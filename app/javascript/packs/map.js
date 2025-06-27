@@ -11,6 +11,21 @@ async function initMap() {
     zoom: 15,
     mapTypeControl: false
   });
+
+  map.addListener("click", (event) => {
+    const lat = event.latLng.lat();
+    const lng = event.latLng.lng();
+    addMarker(lat, lng);
+    sendCoordinates(lat, lng);
+  });
+
+  function addMarker(lat, lng) {
+    new google.maps.Marker({
+      position: { lat: lat, lng: lng },
+      map: map,
+    });
+  }
+
 }
 
 initMap()
