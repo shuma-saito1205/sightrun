@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     resources :permits, only: [:create, :destroy]
     resource :group_users, only: [:create, :destroy]
   end
+  resources :favorite_courses, only: [:index]
   get "groups/:id/permits" => "groups#permits", as: :permits
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

@@ -1,0 +1,2 @@
+class FavoriteCoursesController < ApplicationController
+end
