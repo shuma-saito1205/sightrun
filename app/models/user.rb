@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :permits, dependent: :destroy
   has_many :groups, through: :group_users
   has_many :activities, dependent: :destroy
+  has_many :favorite_courses, dependent: :destroy
   
   has_one_attached :profile_image
 

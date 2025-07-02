@@ -3,6 +3,7 @@
 });
 
 let map;
+let markers = [];
 
 async function initMap() {
   const { Map } = await google.maps.importLibrary("maps");
@@ -11,6 +12,31 @@ async function initMap() {
     zoom: 15,
     mapTypeControl: false
   });
+
+  const saveButtonDiv = document.createElement('div');
+  const saveButton = new SaveButton(saveButtonDiv);
+
+  class SaveButton {
+    constructor(controlDiv) {
+      controlDiv.style.padding = '5px';
+      controlDiv.style.backgroundColor = '#fff';
+      controlDiv.style.cursor = 'pointer';
+      controlDiv.style.textAlign = 'center';
+      controlDiv.textContent = 'Save Marker';
+
+      controlDiv.addEventListener('click', () => {
+        const lastMarker = markers[markers.length - 1];
+        if(lastMarker) {
+        saveMarker(lastMarker.lat,lastMarker.lng);
+        }
+      });
+      map.controls[google.maps.ControlPosition.TOP_CENTER].push(saveButtonDiv);
+    }
+  }
+
+  saveButtonDiv.index = 1;
+
+  
 
   map.addListener("click", (event) => {
     const lat = event.latLng.lat();
@@ -24,6 +50,24 @@ async function initMap() {
       position: { lat: lat, lng: lng },
       map: map,
     });
+
+    markers.push({ lat: lat, lng: lng });
+
+    drawRoute();
+
+    return markers;
+  }
+
+  function drawRoute() {
+    const routePath = new google.maps.Polyline({
+      path: markers,
+      geodesic: true,
+      strokeColor: '#FF0000',
+      strokeOpacity: 1.0,
+      strokeWeight: 2,
+    });
+
+    routePath.setMap(map);
   }
 
 }
