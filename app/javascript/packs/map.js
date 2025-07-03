@@ -13,35 +13,11 @@ async function initMap() {
     mapTypeControl: false
   });
 
-  const saveButtonDiv = document.createElement('div');
-  const saveButton = new SaveButton(saveButtonDiv);
-
-  class SaveButton {
-    constructor(controlDiv) {
-      controlDiv.style.padding = '5px';
-      controlDiv.style.backgroundColor = '#fff';
-      controlDiv.style.cursor = 'pointer';
-      controlDiv.style.textAlign = 'center';
-      controlDiv.textContent = 'Save Marker';
-
-      controlDiv.addEventListener('click', () => {
-        const lastMarker = markers[markers.length - 1];
-        if(lastMarker) {
-        saveMarker(lastMarker.lat,lastMarker.lng);
-        }
-      });
-      map.controls[google.maps.ControlPosition.TOP_CENTER].push(saveButtonDiv);
-    }
-  }
-
-  saveButtonDiv.index = 1;
-
-  
-
   map.addListener("click", (event) => {
     const lat = event.latLng.lat();
     const lng = event.latLng.lng();
     addMarker(lat, lng);
+    getAddressFromLatLng(lat, lng);
     sendCoordinates(lat, lng);
   });
 
@@ -70,6 +46,22 @@ async function initMap() {
     routePath.setMap(map);
   }
 
+  function reverseGeocodeMarkers() {
+    markers.forEach(marker => {
+      const geocoder = new google.maps.Geocoder();
+      const latlng = { lat: marker.lat, lng: marker.lng };
+  
+      geocoder.geocode({ 'location': latlng }, function(results, status) {
+        if (status === 'OK' && results[0]) {
+          const address = results[0].formatted_address;
+          console.log(`Marker at (${marker.lat}, ${marker.lng}) is at address: ${address}`);
+        } else {
+          console.error('Geocode was not successful for the following reason: ' + status);
+        }
+      });
+    });
+  }
+  reverseGeocodeMarkers();
 }
 
 initMap()

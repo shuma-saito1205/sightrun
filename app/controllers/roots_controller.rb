@@ -1,9 +1,13 @@
 class RootsController < ApplicationController
 
-  def save_marker
-    latitude = params[:latitude]
-    longitude = params[:longitude]
-    Root.create(favorite_course_id: params[:favorite_course_id], latitude: latitude, longitude: longitude)
+  def create
+    @root = Root.new(latitude: params[:lat], longitude: params[:lng])
+    if @root.save
+      render json: @root, status: :created
+    else
+      render json: @root.errors, status: :unprocessable_entity
+    end
   end
+  
 
 end
