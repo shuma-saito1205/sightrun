@@ -13,9 +13,13 @@ async function initMap() {
     mapTypeControl: false
   });
 
+  const favoriteCourseId = document.getElementById('your_favorite_course_id_field_id').value;
   map.addListener("click", (event) => {
     const lat = event.latLng.lat();
     const lng = event.latLng.lng();
+    document.getElementById('latitude').value = lat;
+    document.getElementById('longitude').value = lng;
+    document.getElementById('favorite_course_id').value = favoriteCourseId;
     addMarker(lat, lng);
     getAddressFromLatLng(lat, lng);
     sendCoordinates(lat, lng);
@@ -65,3 +69,19 @@ async function initMap() {
 }
 
 initMap()
+
+const form = document.getElementById('your_form_id');
+form.addEventListener("submit", (event) => {
+  const latInput = document.createElement('input');
+  latInput.type = 'hidden';
+  latInput.name = 'root[latitude]';
+  latInput.value = document.getElementById('latitude').value;
+  
+  const lngInput = document.createElement('input');
+  lngInput.type = 'hidden';
+  lngInput.name = 'root[longitude]';
+  lngInput.value = document.getElementById('longitude').value;
+  
+  form.appendChild(latInput);
+  form.appendChild(lngInput);
+});

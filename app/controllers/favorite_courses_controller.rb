@@ -22,6 +22,15 @@ class FavoriteCoursesController < ApplicationController
     @favorite_course = FavoriteCourse.find(params[:id])
   end
 
+  def update
+    @favorite_course = FavoriteCourse.find(params[:id])
+    if @favorite_course.update(favorite_course_params)
+      redirect_to favorite_courses_path
+    else
+      render 'edit'
+    end
+  end
+
   private
 
   def favorite_course_params

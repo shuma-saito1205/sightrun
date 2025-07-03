@@ -1,0 +1,16 @@
+<h1>New Favorite course</h1>
+
+<div class="container">
+  <div id="map"></div>
+</div>
+
+<%= form_with(model: @root, url: roots_path, remote: true) do |form| %>
+  <%= form.hidden_field :favorite_course_id, value: @favorite_course.id %>
+  <%= form.hidden_field :latitude, id: 'latitude' %>
+  <%= form.hidden_field :longitude, id: 'longitude' %>
+  <%= form.submit 'Save Pin' %>
+<% end %>
+
+<%= javascript_pack_tag 'map', 'data-turbolinks-track': 'reload' %>
+
+
