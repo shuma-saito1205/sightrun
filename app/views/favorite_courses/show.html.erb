@@ -1,0 +1,17 @@
+<h1>Favorite course</h1>
+
+<% if @favorite_course.present? %>
+  <p>・Introduction</p>
+  <%= @favorite_course.introduction %>
+  <%= link_to 'edit', edit_user_favorite_course_path %>
+<% else %>
+  <p>データがありません</p>
+<% end %>
+
+<%= link_to 'New Course', new_favorite_course_root_path(@favorite_courses) %>
+<div class="container">
+  <div id="map"></div>
+</div>
+<%= javascript_pack_tag 'map', 'data-turbolinks-track': 'reload' %>
+
+

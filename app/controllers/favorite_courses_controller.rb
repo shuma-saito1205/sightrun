@@ -14,6 +14,13 @@ class FavoriteCoursesController < ApplicationController
     end
   end
 
+  def show
+    @favorite_course = FavoriteCourse.find_by(id: params[:id])
+    if @favorite_course.nil?
+      redirect_to new_user_favorite_course_root_path
+    end
+  end
+
   def index
     @favorite_courses = FavoriteCourse.all
   end

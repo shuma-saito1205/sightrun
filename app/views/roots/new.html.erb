@@ -4,11 +4,11 @@
   <div id="map"></div>
 </div>
 
-<%= form_with(model: @root, url: roots_path, remote: true) do |form| %>
-  <%= form.hidden_field :favorite_course_id, value: @root.favorite_course.id %>
+<%= form_with(model: [@favorite_course, @root], local: true) do |form| %>
+  <%= form.hidden_field :favorite_course_id, value: @favorite_course.id %>
   <%= form.hidden_field :latitude, id: 'latitude' %>
   <%= form.hidden_field :longitude, id: 'longitude' %>
-  <%= form.submit 'Save Pin' %>
+  <%= form.submit 'Save Root' %>
 <% end %>
 
 <%= javascript_pack_tag 'map', 'data-turbolinks-track': 'reload' %>
