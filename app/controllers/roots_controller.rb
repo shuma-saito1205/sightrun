@@ -2,7 +2,7 @@ class RootsController < ApplicationController
   before_action :set_favorite_course, only: [:new, :create]
 
   def new
-    @root = @favorite_course.roots.build
+    @root = Root.new
   end
 
   def create

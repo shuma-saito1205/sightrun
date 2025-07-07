@@ -1,14 +1,16 @@
 <h1>Favorite course</h1>
 
+<p>・Introduction</p>
 <% if @favorite_course.present? %>
-  <p>・Introduction</p>
   <%= @favorite_course.introduction %>
-  <%= link_to 'edit', edit_user_favorite_course_path %>
+  <%= link_to 'edit', edit_user_favorite_course_path %><br>
 <% else %>
   <p>データがありません</p>
+  <%= link_to 'New', new_user_favorite_course_path %><br>
 <% end %>
 
-<%= link_to 'New Course', new_favorite_course_root_path(@favorite_courses) %>
+
+<%= link_to 'New Course', new_user_favorite_course_root_path %>
 <div class="container">
   <div id="map"></div>
 </div>

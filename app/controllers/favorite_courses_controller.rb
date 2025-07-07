@@ -8,7 +8,7 @@ class FavoriteCoursesController < ApplicationController
     @favorite_course = FavoriteCourse.new(favorite_course_params)
     @favorite_course.user_id = current_user.id
     if @favorite_course.save
-      redirect_to favorite_courses_path
+      redirect_to user_favorite_course_path
     else 
       render 'new'
     end

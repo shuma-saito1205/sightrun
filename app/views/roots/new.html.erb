@@ -4,7 +4,7 @@
   <div id="map"></div>
 </div>
 
-<%= form_with(model: [@favorite_course, @root], local: true) do |form| %>
+<%= form_with(model: @root, url: root_path, local: true) do |form| %>
   <%= form.hidden_field :favorite_course_id, value: @favorite_course.id %>
   <%= form.hidden_field :latitude, id: 'latitude' %>
   <%= form.hidden_field :longitude, id: 'longitude' %>
