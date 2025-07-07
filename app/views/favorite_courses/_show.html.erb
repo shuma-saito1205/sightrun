@@ -8,12 +8,7 @@
   <p>データがありません</p>
   <%= link_to 'New', new_user_favorite_course_path %><br>
 <% end %>
+<%= link_to 'New Course', new_user_favorite_course_root_path(favorite_course_id: @favorite_course.id) %>
 
-
-<%= link_to 'New Course', new_user_favorite_course_root_path %>
-<div class="container">
-  <div id="map"></div>
-</div>
-<%= javascript_pack_tag 'map', 'data-turbolinks-track': 'reload' %>
 
 

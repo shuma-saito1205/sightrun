@@ -1,6 +1,7 @@
 class FavoriteCoursesController < ApplicationController
 
   def new
+    @user_id = current_user.id
     @favorite_course = FavoriteCourse.new
   end
 
@@ -15,10 +16,7 @@ class FavoriteCoursesController < ApplicationController
   end
 
   def show
-    @favorite_course = FavoriteCourse.find_by(id: params[:id])
-    if @favorite_course.nil?
-      redirect_to new_user_favorite_course_root_path
-    end
+    @favorite_course = FavoriteCourse.find(params[:id])
   end
 
   def index
