@@ -1,7 +1,0 @@
-<h1>New introduction</h1>
-
-<%= form_with(model: @favorite_course, url: "/users/:user_id/favorite_course", local: true) do |f| %>
-  <h3>・Introduction</h3>
-  <%= f.text_field :introduction %>
-  <%= f.submit '保存' %>
-<% end %>

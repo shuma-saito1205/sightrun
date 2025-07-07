@@ -1,0 +1,7 @@
+<h1>Favorite Course</h1>
+<%=  render 'show', user: @user %>
+<%= link_to 'new course', new_user_root_path %>
+<div class="container">
+  <div id="map"></div>
+</div>
+<%= javascript_pack_tag 'map', 'data-turbolinks-track': 'reload' %>

@@ -10,12 +10,13 @@ class User < ApplicationRecord
   has_many :permits, dependent: :destroy
   has_many :groups, through: :group_users
   has_many :activities, dependent: :destroy
-  has_many :favorite_courses, dependent: :destroy
+  has_many :roots, dependent: :destroy
   
   has_one_attached :profile_image
 
   validates :email, presence: true
   validates :name, uniqueness: true, length: { in: 2..20 }
+  validates :course_introduction, presence: false, length: { maximum: 50 }
 
   def get_profile_image(width, height)
     unless profile_image.attached?

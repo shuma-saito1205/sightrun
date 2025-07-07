@@ -19,9 +19,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def index
-  end
-
   def destroy
     user = User.find(params[:id])
     user.destroy
@@ -32,7 +29,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :profile_image)
+    params.require(:user).permit(:name, :profile_image, :course_introduction)
   end
 
   def is_matching_login_user

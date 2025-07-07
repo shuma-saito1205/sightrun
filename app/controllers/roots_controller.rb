@@ -1,13 +1,13 @@
 class RootsController < ApplicationController
-  before_action :set_favorite_course, only: [:new, :create]
+  before_action :set_root, only: [:new, :create]
 
   def new
     @root = Root.new
   end
 
   def create
-    @root = @favorite_course.roots.build(root_params)
-
+    @root = Root.new(root_params)
+    @root.user_id = current_user.id
     if @root.save
       redirect_to @root, notice: 'Rootを作成しました'
     else
@@ -15,17 +15,29 @@ class RootsController < ApplicationController
     end
   end
 
-  private
-    def set_favorite_course
-      @favorite_course = FavoriteCourse.find_by(id: params[:favorite_course_id])
-      if @favorite_course.nil?
-        @favorite_course = FavoriteCourse.new
-      end
-    end
+  def show
+    @root = Root.find(params[:id])
+    @user = User.find(params[:user_id])
+  end
 
-    def root_params
-      params.require(:root).permit(:latitude, :longitude)
+  def index
+    @roots = Root.all
+    @user = User.find(params[:user_id])
+  end
+  
+private
+
+  def set_root
+    @root = Root.find_by(id: params[:root_id])
+    if @root.nil?
+      @root = Root.new
     end
+  end
+
+  def root_params
+    params.require(:root).permit(:user_id, :latitude, :longitude)
+  end
+
 end
 
 

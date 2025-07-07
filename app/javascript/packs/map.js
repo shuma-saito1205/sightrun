@@ -13,15 +13,14 @@ async function initMap() {
     mapTypeControl: false
   });
 
-  const favoriteCourseId = document.getElementById('your_favorite_course_id_field_id').value;
+  const rootId = document.getElementById('your_root_id_field_id').value;
   map.addListener("click", (event) => {
     const lat = event.latLng.lat();
     const lng = event.latLng.lng();
     document.getElementById('latitude').value = lat;
     document.getElementById('longitude').value = lng;
-    document.getElementById('favorite_course_id').value = favoriteCourseId;
+    document.getElementById('root_id').value = rootId;
     addMarker(lat, lng);
-    getAddressFromLatLng(lat, lng);
     sendCoordinates(lat, lng);
   });
 
@@ -40,7 +39,7 @@ async function initMap() {
 
   function drawRoute() {
     const routePath = new google.maps.Polyline({
-      path: markers,
+      path: markersPositions,
       geodesic: true,
       strokeColor: '#FF0000',
       strokeOpacity: 1.0,

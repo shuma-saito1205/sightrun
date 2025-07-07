@@ -1,5 +1,5 @@
 class Root < ApplicationRecord
-  belongs_to :favorite_course
+  belongs_to :user
 
   geocoded_by :address
   after_validation :geocode
