@@ -21,8 +21,8 @@ class RootsController < ApplicationController
   end
 
   def index
-    @roots = Root.all
     @user = User.find(params[:user_id])
+    @roots = @user.roots
   end
   
 private

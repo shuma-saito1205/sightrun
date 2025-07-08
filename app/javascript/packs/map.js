@@ -70,12 +70,22 @@ async function initMap() {
       throw new Error('Failed to save marker data');
     })
     .then(data => {
-      // 保存が成功した場合の処理
     })
     .catch(error => {
       console.error('Error:', error);
     });
   });
 }
+
+document.addEventListener('turbolinks:load', function() {
+  const mapElement = document.getElementById('map');
+  if (mapElement) {
+    const map = new google.maps.Map(mapElement, {
+      center: { lat: 35.681236, lng: 139.767125 },
+      zoom: 15,
+      mapTypeControl: false
+    });
+  }
+});
 
 initMap()
