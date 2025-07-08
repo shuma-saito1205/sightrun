@@ -13,19 +13,16 @@ async function initMap() {
     mapTypeControl: false
   });
 
-  const rootId = document.getElementById('your_root_id_field_id').value;
   map.addListener("click", (event) => {
-    const lat = event.latLng.lat();
-    const lng = event.latLng.lng();
     document.getElementById('latitude').value = lat;
     document.getElementById('longitude').value = lng;
-    document.getElementById('root_id').value = rootId;
     addMarker(lat, lng);
-    sendCoordinates(lat, lng);
   });
 
   function addMarker(lat, lng) {
-    new google.maps.Marker({
+    console.log("Clicked Latitude:", lat);
+    console.log("Clicked Longitude:", lng);
+    const marker = new google.maps.Marker({
       position: { lat: lat, lng: lng },
       map: map,
     });
@@ -38,49 +35,21 @@ async function initMap() {
   }
 
   function drawRoute() {
-    const routePath = new google.maps.Polyline({
-      path: markersPositions,
+    const path = markers.map(marker => {
+      return { lat: marker.lat, lng: marker.lng };
+    });
+
+    const route = new google.maps.Polyline({
+      path: path,
       geodesic: true,
       strokeColor: '#FF0000',
       strokeOpacity: 1.0,
       strokeWeight: 2,
     });
 
-    routePath.setMap(map);
+    route.setMap(map);
   }
-
-  function reverseGeocodeMarkers() {
-    markers.forEach(marker => {
-      const geocoder = new google.maps.Geocoder();
-      const latlng = { lat: marker.lat, lng: marker.lng };
   
-      geocoder.geocode({ 'location': latlng }, function(results, status) {
-        if (status === 'OK' && results[0]) {
-          const address = results[0].formatted_address;
-          console.log(`Marker at (${marker.lat}, ${marker.lng}) is at address: ${address}`);
-        } else {
-          console.error('Geocode was not successful for the following reason: ' + status);
-        }
-      });
-    });
-  }
-  reverseGeocodeMarkers();
 }
 
 initMap()
-
-const form = document.getElementById('your_form_id');
-form.addEventListener("submit", (event) => {
-  const latInput = document.createElement('input');
-  latInput.type = 'hidden';
-  latInput.name = 'root[latitude]';
-  latInput.value = document.getElementById('latitude').value;
-  
-  const lngInput = document.createElement('input');
-  lngInput.type = 'hidden';
-  lngInput.name = 'root[longitude]';
-  lngInput.value = document.getElementById('longitude').value;
-  
-  form.appendChild(latInput);
-  form.appendChild(lngInput);
-});
