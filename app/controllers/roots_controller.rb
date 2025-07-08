@@ -9,7 +9,7 @@ class RootsController < ApplicationController
     @root = Root.new(root_params)
     @root.user_id = current_user.id
     if @root.save
-      render json: { message: 'Marker data saved successfully' }, status: :ok
+      redirect_to user_roots_path(current_user)
     else
       render json: { error: 'Failed to save marker data' }, status: :unprocessable_entity
     end

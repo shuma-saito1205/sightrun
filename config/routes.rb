@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   get 'events/:id', to: 'events#show'
   get 'event', to: 'events#index', defaults: { format: 'json' }
   resources :users, only: [:show, :edit, :index, :update, :destroy] do
-    resources :roots, only: [:new, :index, :show, :edit]
+    resources :roots, only: [:new, :index, :show, :edit, :create]
   end
   resources :activities, only: [:new, :create, :index, :edit, :update, :destroy]
   resources :posts do

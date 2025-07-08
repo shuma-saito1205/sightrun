@@ -4,7 +4,7 @@
   <div id="map"></div>
 </div>
 
-<%= form_with(model: @root, url: root_path, local: true) do |form| %>
+<%= form_with model: @root, url: user_roots_path(current_user), method: :post do |form| %>
   <%= form.hidden_field :latitude, id: 'latitude' %>
   <%= form.hidden_field :longitude, id: 'longitude' %>
   <%= form.submit 'Save Root' %>

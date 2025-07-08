@@ -14,6 +14,8 @@ async function initMap() {
   });
 
   map.addListener("click", (event) => {
+    const lat = event.latLng.lat();
+    const lng = event.latLng.lng();
     document.getElementById('latitude').value = lat;
     document.getElementById('longitude').value = lng;
     addMarker(lat, lng);
@@ -50,6 +52,30 @@ async function initMap() {
     route.setMap(map);
   }
   
+  document.getElementById('saveRootBtn').addEventListener('click', function() {
+    const latitude = document.getElementById('latitude').value;
+    const longitude = document.getElementById('longitude').value;
+  
+    fetch('/saveMarkerData', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ latitude: latitude, longitude: longitude })
+    })
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      }
+      throw new Error('Failed to save marker data');
+    })
+    .then(data => {
+      // 保存が成功した場合の処理
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+  });
 }
 
 initMap()
