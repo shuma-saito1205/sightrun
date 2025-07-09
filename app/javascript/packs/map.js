@@ -12,6 +12,13 @@ async function initMap() {
     zoom: 15,
     mapTypeControl: false
   });
+  // const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+
+  //       var marker = new google.maps.Marker({
+  //           position: new google.maps.LatLng(35.685175,139.752799), //ピンの緯度経度を入力
+  //           map: map, 
+  //           title: "皇居" //ピンにマウスカーソルを乗せたときに表示されるタイトルを入力
+  //       });
 
   map.addListener("click", (event) => {
     const lat = event.latLng.lat();
@@ -77,15 +84,15 @@ async function initMap() {
   });
 }
 
-document.addEventListener('turbolinks:load', function() {
-  const mapElement = document.getElementById('map');
-  if (mapElement) {
-    const map = new google.maps.Map(mapElement, {
-      center: { lat: 35.681236, lng: 139.767125 },
-      zoom: 15,
-      mapTypeControl: false
-    });
-  }
-});
+// document.addEventListener('turbolinks:load', function() {
+//   const mapElement = document.getElementById('map');
+//   if (mapElement) {
+//     const map = new google.maps.Map(mapElement, {
+//       center: { lat: 35.681236, lng: 139.767125 },
+//       zoom: 15,
+//       mapTypeControl: false
+//     });
+//   }
+// });
 
 initMap()

@@ -7,12 +7,13 @@
 </div>
 <%= javascript_pack_tag 'map', 'data-turbolinks-track': 'reload' %>
 
+緯度経度<%= @root.latitude %><%= @root.longitude %>
 <script>
-debugger
-  const pins = <%= raw @roots.to_json(only: [:latitude,:longitude]) %>;
+const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+const pins = <%= raw @roots.to_json(only: [:latitude,:longitude]) %>;
 
   pins.foreach(pin) => {
-     new google.map.Maker({
+     new AdvancedMarkerElement({
       position: {lat:pin.latitude lng:pin.longitude},
       map: map
      })
