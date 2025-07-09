@@ -13,7 +13,7 @@ class ActivitiesController < ApplicationController
     @activity = Activity.new(hour: total_seconds, mileage: mileage)
     @activity.user_id = current_user.id
     if @activity.save
-      redirect_to activities_path
+      redirect_to user_activities_path
     else
       @activities = Activity.all
       @total_mileage = @activities.sum(:mileage)
@@ -28,7 +28,7 @@ class ActivitiesController < ApplicationController
   end
 
   def index
-    @activities = Activity.all
+    @activities = current_user.activities
     @total_mileage = @activities.sum(:mileage)
     @total_hour = @activities.sum(:hour).to_i
     total_hours = '%02d' % (@total_hour / 3600)
@@ -38,8 +38,8 @@ class ActivitiesController < ApplicationController
   end
 
   def destroy
-    activity = Activity.find(params[:id])
-    activity.destroy
+    @activity = Activity.find(params[:id])
+    @activity.destroy
     redirect_to activities_path
   end
   

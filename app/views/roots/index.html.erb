@@ -6,3 +6,15 @@
   <div id="map"></div>
 </div>
 <%= javascript_pack_tag 'map', 'data-turbolinks-track': 'reload' %>
+
+<script>
+debugger
+  const pins = <%= raw @roots.to_json(only: [:latitude,:longitude]) %>;
+
+  pins.foreach(pin) => {
+     new google.map.Maker({
+      position: {lat:pin.latitude lng:pin.longitude},
+      map: map
+     })
+    }
+</script>
