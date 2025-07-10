@@ -23,7 +23,6 @@ class RootsController < ApplicationController
   def index
     @user = User.find(params[:user_id])
     @roots = @user.roots
-    @root = @roots.last
   end
   
 private
