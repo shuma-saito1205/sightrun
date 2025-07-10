@@ -2,20 +2,29 @@
 <%=  render 'show', user: @user %>
 <%= link_to 'new course', new_user_root_path %>
 
-<div class="container">
-  <div id="map"></div>
-</div>
-<%= javascript_pack_tag 'map', 'data-turbolinks-track': 'reload' %>
+<div id="map"></div>
 
-緯度経度<%= @root.latitude %><%= @root.longitude %>
 <script>
-const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
-const pins = <%= raw @roots.to_json(only: [:latitude,:longitude]) %>;
+ if (typeof map == "undefined") {
+   let map
+   let marker
+ }
 
-  pins.foreach(pin) => {
-     new AdvancedMarkerElement({
-      position: {lat:pin.latitude lng:pin.longitude},
-      map: map
-     })
-    }
+ function initMap(){
+   geocoder = new google.maps.Geocoder()
+
+   map = new google.maps.Map(document.getElementById('map'), {
+     center: { lat: 35.681236, lng: 139.767125 },
+     zoom: 15,
+     mapTypeControl: false
+   });
+
+   <% @roots.each do |root| %>
+      var marker = new google.maps.Marker({
+          position:  { lat: <%= root.latitude %>, lng: <%= root.longitude %> },
+          map: map
+      });
+    <% end %>
+ }
 </script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['Maps_API_Key'] %>&libraries=places&callback=initMap" async defer></script>
