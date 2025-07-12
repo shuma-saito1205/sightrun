@@ -6,12 +6,14 @@ class RootsController < ApplicationController
   end
 
   def create
-    @root = Root.new(root_params)
-    @root.user_id = current_user.id
+    latitude = params[:latitude]
+    longitude = params[:longitude]
+    user_id = params[:user_id]
+    @root = Root.new(latitude: latitude, longitude: longitude, user_id: user_id)
     if @root.save
-      redirect_to user_roots_path(current_user)
+      render json: { message: 'ピンを保存しました！' }
     else
-      render json: { error: 'Failed to save marker data' }, status: :unprocessable_entity
+      render json: { error: 'ピンの保存に失敗しました。' }
     end
   end
 

@@ -12,25 +12,15 @@ async function initMap() {
     zoom: 15,
     mapTypeControl: false
   });
-  // const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
-
-  //       var marker = new google.maps.Marker({
-  //           position: new google.maps.LatLng(35.685175,139.752799), //ピンの緯度経度を入力
-  //           map: map, 
-  //           title: "皇居" //ピンにマウスカーソルを乗せたときに表示されるタイトルを入力
-  //       });
 
   map.addListener("click", (event) => {
     const lat = event.latLng.lat();
     const lng = event.latLng.lng();
-    document.getElementById('latitude').value = lat;
-    document.getElementById('longitude').value = lng;
     addMarker(lat, lng);
+    sendPinCoordinates(lat, lng);
   });
 
   function addMarker(lat, lng) {
-    console.log("Clicked Latitude:", lat);
-    console.log("Clicked Longitude:", lng);
     const marker = new google.maps.Marker({
       position: { lat: lat, lng: lng },
       map: map,
@@ -59,40 +49,32 @@ async function initMap() {
     route.setMap(map);
   }
   
-  document.getElementById('saveRootBtn').addEventListener('click', function() {
-    const latitude = document.getElementById('latitude').value;
-    const longitude = document.getElementById('longitude').value;
-  
-    fetch('/saveMarkerData', {
+  function getCSRFToken() {
+    const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    return token;
+  }
+
+  function sendPinCoordinates(lat, lng) {
+    fetch('/users/' + currentUserId + '/roots', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': getCSRFToken()
       },
-      body: JSON.stringify({ latitude: latitude, longitude: longitude })
-    })
-    .then(response => {
+      body: JSON.stringify({ latitude: lat, longitude: lng, user_id: currentUserId })
+    }).then(response => {
       if (response.ok) {
         return response.json();
+      } else {
+        throw new Error('ピンの情報を送信できませんでした。');
       }
-      throw new Error('Failed to save marker data');
-    })
-    .then(data => {
-    })
-    .catch(error => {
-      console.error('Error:', error);
+    }).then(data => {
+      console.log(data);
+    }).catch(error => {
+      console.error(error);
     });
-  });
-}
+  }
 
-// document.addEventListener('turbolinks:load', function() {
-//   const mapElement = document.getElementById('map');
-//   if (mapElement) {
-//     const map = new google.maps.Map(mapElement, {
-//       center: { lat: 35.681236, lng: 139.767125 },
-//       zoom: 15,
-//       mapTypeControl: false
-//     });
-//   }
-// });
+}
 
 initMap()

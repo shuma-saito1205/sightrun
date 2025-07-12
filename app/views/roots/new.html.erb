@@ -4,11 +4,9 @@
   <div id="map"></div>
 </div>
 
-<%= form_with model: @root, url: user_roots_path(current_user), method: :post do |form| %>
-  <%= form.hidden_field :latitude, id: 'latitude' %>
-  <%= form.hidden_field :longitude, id: 'longitude' %>
-  <%= form.submit 'Save Root' %>
-<% end %>
+<script>
+  const currentUserId = <%= current_user.id %>;
+</script>
 
 <%= javascript_pack_tag 'map', 'data-turbolinks-track': 'reload' %>
 
