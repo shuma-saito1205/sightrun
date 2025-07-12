@@ -16,10 +16,13 @@ Rails.application.routes.draw do
   get 'homes/about' => 'homes#about', as: 'about'
   get "search" => "searches#search"
   devise_for :users
-  resources :events, only: [:index, :show]
-  get 'events', to: 'events#index'
-  resources :users, only: [:show, :edit, :index, :update, :destroy]
-  resources :activities, only: [:new, :create, :index, :edit, :update, :destroy]
+  get '/events', to: 'events#index'
+  get 'events/:id', to: 'events#show'
+  get 'event', to: 'events#index', defaults: { format: 'json' }
+  resources :users, only: [:show, :edit, :index, :update, :destroy] do
+    resources :roots, only: [:new, :show, :index, :edit, :create], shallow: true
+    resources :activities, only: [:new, :create, :index, :edit, :update, :destroy]
+  end
   resources :posts do
     resources :post_comments, only: [:new, :create, :index, :destroy]
   end

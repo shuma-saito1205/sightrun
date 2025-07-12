@@ -1,0 +1,9 @@
+<h1>introduction edit</h1>
+
+<%= form_with model: @favorite_course do |f| %>
+  <label for="inputIntroduction">Introduction</label>
+  <%= f.text_field :introduction, autofocus: true, id:"inputIntroduction" %>
+  <% if @favorite_course.user == current_user %>
+    <%= f.submit "Update" %>
+  <% end %>
+<% end %>

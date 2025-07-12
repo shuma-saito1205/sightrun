@@ -1,0 +1,8 @@
+
+<p>・Introduction</p>
+<% if user.present? && user.course_introduction.present?%>
+  <%= user.course_introduction %>
+<% else %>
+  <p>データがありません</p>
+<% end %>
+<%= link_to 'edit introduction', edit_user_path(current_user) %><br>

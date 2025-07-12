@@ -3,7 +3,7 @@
   <%= image_tag @user.get_profile_image(100,100) %>
   <p><%= link_to "profile edit", edit_user_path(@user.id) %></p>
   <p><%= link_to "Group index", groups_path %></p>
-  <p><%= link_to "Activity", activities_path %></p>
+  <p><%= link_to "Activity", user_activities_path(current_user) %></p>
 </div>
 
 <% @posts.each do |post| %>

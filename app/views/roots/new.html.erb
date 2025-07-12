@@ -1,0 +1,13 @@
+<h1>New Favorite course</h1>
+<%= link_to '登録コースを確認', user_roots_path(current_user) %>
+<div class="container">
+  <div id="map"></div>
+</div>
+
+<script>
+  const currentUserId = <%= current_user.id %>;
+</script>
+
+<%= javascript_pack_tag 'map', 'data-turbolinks-track': 'reload' %>
+
+

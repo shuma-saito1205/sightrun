@@ -1,5 +1,7 @@
 <h1>Activity Top</h1>
+<%= link_to 'Favorite course', user_roots_path(current_user) %><br>
 <%= render 'new', activity: @activity %>
+
 
 <h3>・Total activity<h3>
 <%= "#{@total_mileage} km    #{@total_time} " %>
@@ -13,7 +15,7 @@
     <% seconds = '%02d' % (activity.hour.to_i % 60) %>
     <%= hours %>:<%= minutes %>:<%= seconds %>
     <p>Date：<%= activity.created_at.strftime('%Y/%m/%d') %></p>
-    <%= link_to 'Delete', activity_path(activity), method: :delete, data: {confirm: "Are you sure you want to delete?"} %><br>
+    
   <% end %>
 <% else %>
   <p>No activity</p>
