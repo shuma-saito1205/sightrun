@@ -1,11 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
   <head>
-    <title>Sightrun</title>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>Sightrun</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    
     <script src="https://kit.fontawesome.com/984a14387b.js" crossorigin="anonymous"></script>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -55,10 +58,12 @@
     </header>
    
     <main class="mb-auto">
+      <div class="background-image">
       <div>
         <%= flash[:notice] %>
       </div>
       <%= yield %>
+      </div>
     </main>
     
   </body>
