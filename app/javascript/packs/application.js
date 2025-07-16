@@ -13,8 +13,6 @@ import "bootstrap";
 import "../stylesheets/application";
 import './calendar';
 
-import '../stylesheets/application.css';
-
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()

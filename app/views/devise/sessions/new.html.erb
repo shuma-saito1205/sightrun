@@ -1,4 +1,6 @@
 <div class="container mt-5">
+  <div class="row justify-content-md-center">
+    <div class="col-4">
     <%= form_with model: @user, url: user_session_path do |f| %>
       <p class="text-center h3 mb-3 font-weight-normal-">Sign in</h1>
       <div class="field">
@@ -15,5 +17,7 @@
       <% end %>
       <button class="btn btn-lg btn-outline-success btn-block" type="submit">Log in</button>
     <% end %>
+    </div>
+  </div>
 </div>
 

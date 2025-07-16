@@ -1,17 +1,27 @@
-<h1>Welcome to Sightrun</h1>
-<h4>このアプリは...</h3>
-<h2>「いつまでも元気でいよう！」がテーマの<br>ランニングコミュニティサイトです!</h2>
-<h4>
-気軽に運動不足を解消できる「ランニング」が始められます。<br>
-さらに、ランニングコースの情報を共有して、<br>あなたも知らないその街の良さを知ることができるかも...!<br>
-健康的な新しい自分と、知られざるその街の良さを「再発見」しよう！<br>
-<br>
-・運動不足が気になる方<br>
-・いつまでも健康で元気でいたい方<br>
-・気軽にダイエット、運動をしたい方<br>
-・一人じゃ運動が続かない方<br>
- </h4>
-
-
-<%= link_to "Sign in", new_user_session_path %>
-<%= link_to "Sign up", new_user_registration_path %>
+<div class="cintainer text-center mt-5">
+  <div class="row justify-content-md-center h1 mb-5">Welcome to Sightrun</div>
+  <div class="row justify-content-md-center mb-3">このアプリは...</div>
+  <div class="row justify-content-md-center mb-3">
+    「いつまでも元気でいよう！」<br>
+    が、テーマのランニングコミュニティサイトです!
+  </div>
+  <div class="row justify-content-md-center mb-3">
+    気軽に運動不足を解消できる「ランニング」が始められます。<br>
+    さらに、ランニングコースの情報を共有して、<br>あなたも知らないその街の良さを知ることができるかも...!<br>
+    健康的な新しい自分と、知られざるその街の良さを「再発見」しよう！
+  </div>
+  <div class="row justify-content-md-center mb-3">
+    ・運動不足が気になる方<br>
+    ・いつまでも健康で元気でいたい方<br>
+    ・気軽にダイエット、運動をしたい方<br>
+    ・一人じゃ運動が続かない方<br>
+  </div>
+  <div class="row justify-content-md-center">
+    <div class="col-1">
+      <%= link_to "Sign in", new_user_session_path, class: 'nav-link text-success' %>
+    </div>
+    <div class="col-1">
+      <%= link_to "Sign up", new_user_registration_path, class: 'nav-link text-success' %>
+    </div>
+  </div>
+</div>
