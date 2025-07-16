@@ -23,8 +23,8 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item">
+            <ul class="navbar-nav ml-auto text-left">
+              <li class="nav-item ">
                 <%= link_to "・Post index", posts_path, class: 'nav-link text-dark' %>
               </li>
               <% if user_signed_in? %>
@@ -65,5 +65,8 @@
       <%= yield %>
     </main>
     
+    <footer>
+      <p class="footer-text">© Sight Run by Saito.Inc.</p>
+    </footer>
   </body>
 </html>

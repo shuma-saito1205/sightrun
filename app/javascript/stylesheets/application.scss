@@ -1,7 +1,35 @@
 @use '~bootstrap/scss/bootstrap';
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #6c6c6b;
+}
+
+header {
+  width: 90%;
+  padding: 15px 0;
+  margin: 0 auto;
+  text-align: center;
+}
 
 #map {
   width: 100%;
   height: calc(100vh - 88px - 179px);
+}
+
+.mb-auto {
+  height: 100%;
+  background-image: url(../images/run2.jpg);
+  background-size: cover;
+}
+
+
+footer {
+  width: 100%;
+  height: 100px;
+  text-align: center;
+  line-height: 120px;
+  line-height: 120px;
 }
