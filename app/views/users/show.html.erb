@@ -1,12 +1,24 @@
-<div>
-  <h3><%= @user.name %></h3>
-  <%= image_tag @user.get_profile_image(100,100) %>
-  <p><%= link_to "profile edit", edit_user_path(@user.id) %></p>
-  <p><%= link_to "Group index", groups_path %></p>
-  <p><%= link_to "Activity", user_activities_path(current_user) %></p>
-</div>
-
-<% @posts.each do |post| %>
+<div class="container mt-5">
+  <div class="row justify-content-md-center mb-3">
+    <%= image_tag @user.get_profile_image(100,100) %>
+  </div>
+  <div class="row justify-content-md-center">
+    <h3><%= @user.name %></h3>
+  </div>
+  <div class="row justify-content-md-center mt-2">
+    <%= link_to "Plofile edit",edit_user_path(@user.id), class:"btn btn-outline-dark", role: 'button' %>
+  </div>
+  <div class="row justify-content-md-center text-center mt-5">
+    <div class="col-3">
+      <%= link_to "Event calendar", events_path, data: {"turbolinks" => false}, class: 'btn' %></div>
+    <div class="col-3">
+      <%= link_to "Group index", groups_path, class: 'btn' %></div>
+    <div class="col-3">
+      <%= link_to "Activity", user_activities_path(current_user), class: 'btn' %></div>
+  </div>
+  
+  <div class="row justify-content-md-center text-center">
+    <% @posts.each do |post| %>
   <div>
     <p>User name：<%= post.user.name %></p> 
     <p>Title：<%= link_to post_path(post.id) do %>
@@ -16,3 +28,5 @@
     <p><%= link_to "#{post.post_comments.count} comment", post_path(post.id) %></p>
   </div>
 <% end %>
+  </div>
+</div>
