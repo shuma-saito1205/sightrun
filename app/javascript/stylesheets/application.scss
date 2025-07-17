@@ -20,10 +20,11 @@ header {
   height: calc(100vh - 88px - 179px);
 }
 
-.background-image {
-  height: 100%;
+.jumbotron {
+  height: 400px;
   background-image: url(../images/run2.jpg);
   background-size: cover;
+  background-position: center;
 }
 
 
@@ -32,6 +33,6 @@ footer {
   height: 60px;
   text-align: center;
   line-height: 80px;
-  border-top: #6c6c6b;
+  border-top: 1px solid lightgray;
   font-size: small;
 }

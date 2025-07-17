@@ -57,15 +57,9 @@
       </nav>
     </header>
    
-    <main class="mb-auto vh-100">
-      <div class="container">
-        <div class="row">
-          <div class="col-12">
-            <div><%= flash[:notice] %></div>
-            <%= yield %>
-          </div>
-        </div>
-      </div>
+    <main class="mb-auto">
+      <div><%= flash[:notice] %></div>
+      <%= yield %>
     </main>
     
     <footer>
