@@ -14,9 +14,9 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body class="d-flex flex-column vh-100">
-    <header class="shadow-sm">
-      <nav class="navbar navbar-expand-lg navbar-light">
+  <body class="d-flex flex-column">
+    <header class="shadow">
+      <nav class="navbar navbar-expand-xl navbar-light border-bottom">
         <div class="container-fluid">
           <a class="navbar-brand text-dark" href="/">-Sight Run-</a>
           <button class="navbar-toggler body-dark" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -57,12 +57,15 @@
       </nav>
     </header>
    
-    <main class="mb-auto">
-      <div class="background-image">
-      <div>
-        <%= flash[:notice] %>
+    <main class="mb-auto vh-100">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div><%= flash[:notice] %></div>
+            <%= yield %>
+          </div>
+        </div>
       </div>
-      <%= yield %>
     </main>
     
     <footer>
