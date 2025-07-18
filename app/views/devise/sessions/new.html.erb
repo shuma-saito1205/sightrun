@@ -2,7 +2,7 @@
   <div class="row justify-content-center">
     <div class="col-4">
     <%= form_with model: @user, url: user_session_path do |f| %>
-      <p class="text-center h3 mb-4 font-weight-normal-">Sign in</h1>
+      <p class="text-center h3 mb-4">Sign in</h1>
       <div class="field">
         <%= f.email_field :email, class: "form-control", autofocus: true, autocomplete: "email", placeholder: "E-mail address" %>
       </div>

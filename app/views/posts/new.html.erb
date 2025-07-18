@@ -1,22 +1,27 @@
 <div class="container">
   <div class="row justify-content-center mt-4">
-    <h1>-New post-</h1>
-    <% if @post.errors.any? %>
-      <%= @post.errors.count %>error occurred.
-      <ul>
-        <% @post.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+    <div class="col-5 mt-4">
+      <h3 class=" text-center">-New post-</h3>
+
+      <div class="error message mt-4 mb-4">
+        <% if @post.errors.any? %>
+          <%= @post.errors.count %>error occurred!
+          <ul>
+            <% @post.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
         <% end %>
-      </ul>
-    <% end %>
-  </div>
-    <div class="d-flex align-items-center justify-content-center">
-      <%= form_with model: @post do |f| %>
-        <h4>title</h4>
-        <%= f.text_field :title %>
-        <h4>body</h4>
-        <%= f.text_field :body %>
-        <%= f.submit 'Post' %>
-      <% end %>
+      </div>
+
+      <div class="from mt-5">
+        <%= form_with model: @post do |f| %>
+          <%= f.text_field :title, class: "form-control mb-3", placeholder: "Title" %>
+          <%= f.text_area :body, class: "form-control mb-3", placeholder: "Body" %>
+          <button class="btn btn-outline-success btn-block mt-3" type="submit">Post</button>
+        <% end %>
+      </div>
+
     </div>
+  </div>
 </div>
