@@ -1,11 +1,25 @@
-<% @posts.each do |post| %>
-  <div>
-    <p>User pic：<%= image_tag post.user.get_profile_image(100,100) %></p>
-    <p>User name：<%= post.user.name %></p>
-    <p>Title：<%= link_to post_path(post.id) do %>
-      <%= post.title %>
-    <% end %></p>
-    <p>Body：<%= post.body %></p> 
-    <p><%= link_to "#{post.post_comments.count} comment", post_path(post.id) %></p>
+<div class="container mt-5">
+  <h3 class="text-center mb-4">- Post index -</h3>
+    <table class="table">
+      <% @posts.each do |post| %>
+      <tbody class="table-group-divider">
+        <tr>
+          <th scope="row"><%= image_tag post.user.get_profile_image(100,100) %></th>
+          <td>
+            <%= link_to post_path(post.id) do %>
+              <%= post.title %>
+            <% end %>
+            <p><%= post.body %></p>
+            <div class="row">
+              <div class="col-4"><%= post.user.name %>さん</div>
+              <div class="col-3">
+                <i class="fa-regular fa-comment"></i>&emsp;
+                <%= "#{post.post_comments.count}" %></div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+      <% end %>
+    </table>
   </div>
-<% end %>
+</div>
