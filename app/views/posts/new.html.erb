@@ -17,7 +17,7 @@
       <div class="from mt-5">
         <%= form_with model: @post do |f| %>
           <%= f.text_field :title, class: "form-control mb-3", placeholder: "Title" %>
-          <%= f.text_area :body, class: "form-control mb-3", placeholder: "Body" %>
+          <%= f.text_area :body, class: "form-control mb-3", style: "height: 220px;", placeholder: "Body" %>
           <button class="btn btn-outline-success btn-block mt-3" type="submit">Post</button>
         <% end %>
       </div>
