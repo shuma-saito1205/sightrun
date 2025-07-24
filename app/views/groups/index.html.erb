@@ -1,7 +1,39 @@
-<% @groups.each do |group| %>
-  <p>Group name：<%= link_to group_path(group.id) do %>
-    <%= group.name %>
-  <% end %>
-  <%= group.group_users.count %>
-<% end %>
-<p><%= link_to "Group new", new_group_path %></p>
+<div class="container-floid m-5">
+  <h3 class="text-center mb-5">-Group Top-</h3>
+
+    <div class="row">
+
+      <div class="col-md-4">
+        <%= render 'new', group: @group %>
+      </div>
+      <div class="offset-md-1"></div>
+
+      <div class="col-md-7">
+        <h5 class="text-center mb-5">Activity index</h5>
+        <table class="table table-hover table-responsive-sm mt-3">
+        <% if @groups.present? %>
+          <% @groups.reverse_each do |group| %>
+            <tbody class="table-group-divider">
+            <tr>
+              <td>
+                <p>Name：<%= link_to group_path(group.id) do %>
+                  <%= group.name %>
+                <% end %>
+                <p class="wrap-text" style="word-break: break-all;">Theme：<%= group.theme.truncate(50) %></p>
+                <div class="row">
+                  <div class="col">
+                    <i class="fa-solid fa-people-group"></i>
+                    <%= group.group_users.count %>
+                  </div>
+                </div>
+              </td>
+            <tr>
+            </tbody>
+          <% end %>
+        <% else %>
+          <p>No group</p>
+        <% end %>
+        </table>
+      </div>
+    </div>
+</div>

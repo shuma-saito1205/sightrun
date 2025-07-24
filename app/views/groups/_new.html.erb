@@ -1,0 +1,25 @@
+<div class="container">
+      <h5 class=" text-center">-New group-</h5>
+
+      <div class="error message mt-4 mb-4">
+        <% if group.errors.any? %>
+          <%= group.errors.count %>error occurred!
+          <ul>
+            <% group.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        <% end %>
+      </div>
+
+      <div class="from mt-4">
+        <%= form_with model: group do |f| %>
+          <h4>Name</h4>
+          <%= f.text_field :name, class: "form-control mb-3", placeholder: "Group name" %>
+          <h4>Theme</h4>
+          <%= f.text_area :theme, class: "form-control mb-3", style: "height: 220px;", placeholder: "Group theme" %>
+          <button class="btn btn-outline-success btn-block mt-3" type="submit">Create</button>
+        <% end %>
+      </div>
+
+</div>

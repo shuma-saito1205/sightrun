@@ -1,6 +1,17 @@
 <div class="container">
       <h5 class=" text-center">New activity</h5>
 
+      <div class="error message mt-4 mb-4">
+        <% if activity.errors.any? %>
+          <%= activity.errors.count %>error occurred!
+          <ul>
+            <% activity.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        <% end %>
+      </div>
+
       <div class="from mt-5">
         <%= form_with model: activity do |f| %>
           <%= f.label :mileage %>

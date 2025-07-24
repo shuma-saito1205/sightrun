@@ -4,10 +4,16 @@ class GroupsController < ApplicationController
 
   def index
     @groups = Group.all
+    if params[:id].present?
+      set_group
+    else
+      @group = Group.new
+    end
   end
 
   def show
     @group = Group.find(params[:id])
+    
   end
 
   def new

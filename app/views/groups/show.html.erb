@@ -1,23 +1,56 @@
-<h1>Group show</h1>
+<div class="container-floid m-5">
+  <h3 class="text-center mb-4 mt-5">-Group show-</h3>
+  <div class="row justify-content-center mt-3">
+    <h1 class="display-4 mt-5"><%= @group.name %></h1>
+  </div>
+  <div class="row justify-content-center mt-5">
+    <div class="col-10">
+      <p class="wrap-text mt-2 text-center" style="word-break: break-all;"><%= @group.theme %></p>
+    </div>
+  </div>
 
-<p>Group name：<%= @group.name %></p>
-<p>Group theme：<%= @group.theme %></p>
+  <div class="row justify-content-center mt-3">
+    <% if @group.owner_id == current_user.id %>
+      <%= link_to '承認待ち一覧', group_permits_path(@group), class: 'nav-link text-success' %>
+      <%= link_to 'Edit', edit_group_path(@group), class: 'nav-link text-success' %>
+      <%= link_to 'Delete', group_path(@group), class: 'nav-link text-success', method: :delete, data: {confirm: "Are you sure you want to Delete?"} %>
+    <% else %>
+      <% if @group.group_users.exists?(user_id: current_user.id) %>
+        <%= link_to 'Leave this group', group_group_users_path(@group), method: :delete, data: {confirm: "Are you sure you want to without?"} %>
+      <% elsif @group.permits.exists?(user_id: current_user.id)  %>
+        <%= link_to '申請取消', group_permit_path(@group), method: :delete %>
+      <% else %>
+        <%= link_to '参加申請', group_permits_path(@group), method: :post %>
+      <% end %>
+    <% end %>
+  </div>
 
-<% @group.users.each do |member| %>
-    ・<%= member.name %>
-<% end %>
+  <div class="row justify-content-center">
+    <div class="col-md-5 mt-3">
+    <h6 class="text-center mb-4 mt-5">-Member-</h6>
+      <table class="table table-hover table-responsive-sm">
+      <% if @group.group_users.present? %>
+        <% @group.users.each do |member| %>
+          <tbody class="table-group-divider border-top-color-black">
+            <tr>
+              <th scope="row">
+                <%= image_tag member.get_profile_image(100,100), class: "rounded-circle", style: "width: 50px; height: 50px;" %>
+              </th>
+              <td>
+                <%= member.name %>
+              </td>
+            </tr>
+          </tbody>
+        <% end %>
+      <% else %>
+        <p class="text-center">No member</p>
+      <% end %>
+      </table>
+    </div>
 
-<% if @group.owner_id == current_user.id %>
-  オーナー専用
-  <%= link_to 'Edit', edit_group_path(@group) %>
-  <%= link_to 'Delete', group_path(@group), method: :delete, data: {confirm: "Are you sure you want to Delete?"} %>
-  <%= link_to '承認待ち一覧', group_permits_path(@group) %>
-<% else %>
-  <% if @group.group_users.exists?(user_id: current_user.id) %>
-    <%= link_to 'Leave this group', group_group_users_path(@group), method: :delete, data: {confirm: "Are you sure you want to without?"} %>
-  <% elsif @group.permits.exists?(user_id: current_user.id)  %>
-    <%= link_to '申請取消', group_permit_path(@group), method: :delete %>
-  <% else %>
-    <%= link_to '参加申請', group_permits_path(@group), method: :post %>
-  <% end %>
-<% end %>
+    <div class="col-md-5 mt-3">
+      <%= render 'permits', permits: @permits %>
+    </div>
+  </div>
+
+</div>
