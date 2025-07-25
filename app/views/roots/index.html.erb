@@ -1,41 +1,50 @@
-<h1>Favorite Course</h1>
-<%=  render 'show', user: @user %>
-<%= link_to 'new course', new_user_root_path %>
+<div class="container-floid m-5">
+  <h3 class="text-center mb-4 mt-5">-Favorite Course-</h3>
+    
+    <div class="row justify-content-center pt-3">
+      <div class="col-md-3">
+        <%=  render 'show', user: @user %>
+      </div>
 
-<div id="map"></div>
+      <div class="offset-md-1"></div>
 
-<script>
- if (typeof map == "undefined") {
-   let map
-   let marker
- }
+      <div class="col-md-7"
+        <div id="map"></div>
 
- function initMap(){
-   geocoder = new google.maps.Geocoder()
+        <script>
+         if (typeof map == "undefined") {
+           let map
+           let marker
+         }
 
-   map = new google.maps.Map(document.getElementById('map'), {
-     center: { lat: 35.681236, lng: 139.767125 },
-     zoom: 15,
-     mapTypeControl: false
-   });
+         function initMap(){
+           geocoder = new google.maps.Geocoder()
 
-   var markers = [];
-   <% @roots.each do |root| %>
-      var marker = new google.maps.Marker({
-          position:  { lat: <%= root.latitude %>, lng: <%= root.longitude %> },
-          map: map
-      });
-      markers.push(marker);
-    <% end %>
-    for (var i = 0; i < markers.length - 1; i++) {
-        var line = new google.maps.Polyline({
-            path: [markers[i].getPosition(), markers[i + 1].getPosition()],
-            strokeColor: "#FF0000",
-            strokeOpacity: 1.0,
-            strokeWeight: 2,
-            map: map
-        });
-    }
- }
-</script>
-<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['Maps_API_Key'] %>&libraries=places&callback=initMap" async defer></script>
+           map = new google.maps.Map(document.getElementById('map'), {
+             center: { lat: 35.681236, lng: 139.767125 },
+             zoom: 15,
+             mapTypeControl: false
+           });
+
+           var markers = [];
+           <% @roots.each do |root| %>
+              var marker = new google.maps.Marker({
+                  position:  { lat: <%= root.latitude %>, lng: <%= root.longitude %> },
+                  map: map
+              });
+              markers.push(marker);
+            <% end %>
+            for (var i = 0; i < markers.length - 1; i++) {
+                var line = new google.maps.Polyline({
+                    path: [markers[i].getPosition(), markers[i + 1].getPosition()],
+                    strokeColor: "#FF0000",
+                    strokeOpacity: 1.0,
+                    strokeWeight: 2,
+                    map: map
+                });
+            }
+         }
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['Maps_API_Key'] %>&libraries=places&callback=initMap" async defer></script>
+      </div>
+</div>

@@ -1,8 +1,14 @@
+<h5 class=" text-center">Introduction</h5>
 
-<p>・Introduction</p>
-<% if user.present? && user.course_introduction.present?%>
-  <%= user.course_introduction %>
-<% else %>
-  <p>データがありません</p>
-<% end %>
-<%= link_to 'edit introduction', edit_user_path(current_user) %><br>
+<div class="row justify-content-center pt-3">
+  <% if user.present? && user.course_introduction.present?%>
+    <%= user.course_introduction %>
+  <% else %>
+    <p class="text-center">Not seting introduction</p>
+  <% end %>
+</div>
+
+<div class="row justify-content-center pt-3">
+  <%= link_to 'edit introduction', edit_user_path(current_user), class: 'btn btn-outline-success btn-block mt-3' %><br>
+  <%= link_to 'new course', new_user_root_path, class: 'btn btn-outline-success btn-block mt-3' %>
+</div>

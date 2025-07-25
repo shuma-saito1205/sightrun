@@ -18,9 +18,9 @@
       <% if @group.group_users.exists?(user_id: current_user.id) %>
         <%= link_to 'Leave this group', group_group_users_path(@group), method: :delete, data: {confirm: "Are you sure you want to without?"} %>
       <% elsif @group.permits.exists?(user_id: current_user.id)  %>
-        <%= link_to '申請取消', group_permit_path(@group), method: :delete %>
+        <%= link_to 'Request cancel', group_permit_path(@group), method: :delete %>
       <% else %>
-        <%= link_to '参加申請', group_permits_path(@group), method: :post %>
+        <%= link_to 'Join request', group_permits_path(@group), method: :post %>
       <% end %>
     <% end %>
   </div>
