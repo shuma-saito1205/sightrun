@@ -11,21 +11,25 @@
     <% end %>
   </div>
   <div class="row justify-content-center text-center mt-5 mb-4">
+    <% if @user == current_user %>
     <div class="col-3">
-      <%= link_to "calendar", events_path, data: {"turbolinks" => false}, class: 'btn btn-lg hover-effect', style:'height: 110px; width: 110px; line-height: 90px;'%></div>
+      <%= link_to "calendar", events_path, data: {"turbolinks" => false}, class: 'btn btn-outline-success btn-lg', style:'height: 110px; width: 110px; line-height: 90px;'%></div>
     <div class="col-3">
-      <%= link_to "Group", groups_path, class: 'btn btn-lg hover-effect', style:'height: 110px; width: 110px; line-height: 90px;' %></div>
+      <%= link_to "Group", groups_path, class: 'btn btn-outline-success btn-lg', style:'height: 110px; width: 110px; line-height: 90px;' %></div>
     <div class="col-3">
-      <%= link_to "Activity", user_activities_path(current_user), class: 'btn btn-lg hover-effect', style:'height: 110px; width: 110px; line-height: 90px;'%></div>
+      <%= link_to "Activity", user_activities_path(current_user), class: 'btn btn-outline-success btn-lg', style:'height: 110px; width: 110px; line-height: 90px;'%></div>
+    <div class="col-3">
+      <%= link_to 'Course', user_roots_path(current_user), class: 'btn btn-outline-success btn-lg', style:'height: 110px; width: 110px; line-height: 90px;' %></div>
+    <% end %>
   </div>
   
-  <h2 class="row justify-content-center mb-5">-Post index-</h2>
+  <h2 class="row justify-content-center pb-5 pt-5">-Post index-</h2>
   <div class="row justify-content-center text-center mb-3">
     <div class="post mt-2">
       <% if @posts.present? %>
         <% @posts.reverse_each do |post| %>
           <div class="title text-center mb-4">
-            <%= link_to post_path(post.id) do %>
+            <%= link_to post_path(post.id), style:"color: #28a745;" do %>
               <%= post.title %>
             <% end %></p>
             <p><%= post.user.name %></p>

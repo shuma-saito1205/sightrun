@@ -5,7 +5,7 @@
       <%= image_tag @post.user.get_profile_image(100,100), class: "rounded-circle", style: "width: 80px; height: 80px;" %>
     </div>
     <div class="col-6">
-      <p><%= link_to user_path(@user) do %>
+      <p><%= link_to user_path(@user), style:"color: #28a745;" do %>
         <%= @post.user.name %>
       <% end %></p>
       <p><%= @post.created_at.strftime('%Y/%m/%d %H:%M:%S') %>&emsp;
@@ -50,7 +50,9 @@
                 </div>
                 <div class="row mt-2">
                   <div class="col-5 text-left">
-                    <%= post_comment.user.name %>さん
+                    <%= link_to user_path(post_comment.user), style:"color: #28a745;" do %>
+                      <%= post_comment.user.name %>
+                    <% end %>さん
                   </div>
                   <div class="col-3">
                     <%= post_comment.created_at.strftime('%Y/%m/%d') %>

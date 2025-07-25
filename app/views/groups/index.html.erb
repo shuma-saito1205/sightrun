@@ -9,14 +9,14 @@
       <div class="offset-md-1"></div>
 
       <div class="col-md-7">
-        <h5 class="text-center mb-5">Activity index</h5>
+        <h5 class="text-center mb-5 mt-3">Group index</h5>
         <table class="table table-hover table-responsive-sm mt-3">
         <% if @groups.present? %>
           <% @groups.reverse_each do |group| %>
             <tbody class="table-group-divider">
             <tr>
               <td>
-                <p>Name：<%= link_to group_path(group.id) do %>
+                <p>Name：<%= link_to group_path(group.id), style:"color: #28a745;" do %>
                   <%= group.name %>
                 <% end %>
                 <p class="wrap-text" style="word-break: break-all;">Theme：<%= group.theme.truncate(50) %></p>

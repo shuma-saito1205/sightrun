@@ -19,12 +19,12 @@
           <label for="InputName">Name</label>
           <%= f.text_field :name, class: "form-control mb-3", autofocus: true, id:"inputName", placeholder:"Name" %>
           <label for="InputCourseintroduction">Course Introduction</label>
-          <%= f.text_field :course_introduction, class: "form-control mb-3", style: "height: 220px;", autofocus: true, id:"inputCourseintroduction", placeholder:"Introduction" %>
+          <%= f.text_area :course_introduction, class: "form-control mb-3", style: "height: 220px;", autofocus: true, id:"inputCourseintroduction", placeholder:"Introduction" %>
           <label for="InputImage">Profile Image</label><br>
           <%= f.file_field :profile_image, accept: "image/*" %>
           <% if @user == current_user %>
             <button class="btn btn-outline-success btn-block mt-4 mb-3" type="submit">Save</button>
-            <%= link_to "Withdrawal", user_path(@user), method: :delete, data: {confirm: "Are you sure you want to Withdrawal"} %>
+            <%= link_to "Withdrawal", user_path(@user), style:"color: #28a745;", method: :delete, data: {confirm: "Are you sure you want to Withdrawal"} %>
           <% end %>
         <% end %>
       </div>

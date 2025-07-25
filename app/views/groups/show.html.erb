@@ -11,20 +11,20 @@
 
   <div class="row justify-content-center mt-3">
     <% if @group.owner_id == current_user.id %>
-      <%= link_to '承認待ち一覧', group_permits_path(@group), class: 'nav-link text-success' %>
       <%= link_to 'Edit', edit_group_path(@group), class: 'nav-link text-success' %>
       <%= link_to 'Delete', group_path(@group), class: 'nav-link text-success', method: :delete, data: {confirm: "Are you sure you want to Delete?"} %>
     <% else %>
       <% if @group.group_users.exists?(user_id: current_user.id) %>
         <%= link_to 'Leave this group', group_group_users_path(@group), method: :delete, data: {confirm: "Are you sure you want to without?"} %>
       <% elsif @group.permits.exists?(user_id: current_user.id)  %>
-        <%= link_to 'Request cancel', group_permit_path(@group), method: :delete %>
+        <%= link_to 'Request cancel', group_permit_path(@group), style:"color: #28a745;", method: :delete %>
       <% else %>
-        <%= link_to 'Join request', group_permits_path(@group), method: :post %>
+        <%= link_to 'Join request', group_permits_path(@group), style:"color: #28a745;", method: :post %>
       <% end %>
     <% end %>
   </div>
 
+  <% if @group.owner_id == current_user.id %>
   <div class="row justify-content-center">
     <div class="col-md-5 mt-3">
     <h6 class="text-center mb-4 mt-5">-Member-</h6>
@@ -52,5 +52,33 @@
       <%= render 'permits', permits: @permits %>
     </div>
   </div>
+
+  <% else %>
+  
+  <div class="row justify-content-center">
+    <div class="col mt-3">
+    <h6 class="text-center mb-4 mt-5">-Member-</h6>
+      <table class="table table-hover table-responsive-sm">
+      <% if @group.group_users.present? %>
+        <% @group.users.each do |member| %>
+          <tbody class="table-group-divider border-top-color-black">
+            <tr>
+              <th scope="row">
+                <%= image_tag member.get_profile_image(100,100), class: "rounded-circle", style: "width: 50px; height: 50px;" %>
+              </th>
+              <td>
+                <%= link_to user_path, style:"color: #28a745;" do %>
+                  <%= member.name %>
+                <% end %>さん
+              </td>
+            </tr>
+          </tbody>
+        <% end %>
+      <% else %>
+        <p class="text-center">No member</p>
+      <% end %>
+      </table>
+    </div>
+  <% end %>
 
 </div>
