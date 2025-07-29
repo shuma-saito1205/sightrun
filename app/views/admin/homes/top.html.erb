@@ -1,4 +1,21 @@
+<div class="container-floid m-5">
+  <div class="row justify-content-center">
+    <div class="col-md-5 mt-3">
+      <h2 class="text-center mb-4 mt-5">-All users-</h2>
+      <%= render 'admin/dashboards/index', users: @users %>
+    </div>
 
-<%= link_to 'All users', admin_dashboards_path %><br>
-<%= link_to 'All post comments', admin_post_comments_path %><br>
-<%= link_to 'Event calendar', admin_events_path %>
+    <div class="offset-md-1"></div>
+    <div class="col-md-5 mt-3">
+      <h2 class="text-center mb-4 mt-5">-All post comments-</h2>
+      <%= render 'admin/post_comments/index', post_comments: @post_comments %>
+    </div>
+  </div>
+
+  <div class="row justify-content-center pt-5">
+    <h2 class="text-center mb-4 mt-5">-Event calendar-</h2>
+  </div>
+  <div class="row justify-content-center">
+    <%= render 'admin/events/index' %>
+  </div>
+</div>

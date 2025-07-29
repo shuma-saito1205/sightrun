@@ -1,0 +1,28 @@
+<table class="table table-hover table-responsive-sm">
+  <% post_comments.reverse_each do |post_comment| %>
+    <tbody class="table-group-divider border-top-color-black">
+      <tr>
+        <th scope="row">
+          <%= image_tag post_comment.user.get_profile_image(100,100), class: "rounded-circle", style: "width: 80px; height: 80px;" %>
+        </th>
+        <td>
+          <p class="wrap-text"></p>
+          <div class="row mb-3">
+            <%= post_comment.comment %>
+          </div>
+          <div class="row mt-2">
+            <div class="col-5 text-left">
+              <%= @users.find(post_comment.user_id).name %>さん
+            </div>
+            <div class="col-3">
+              <%= post_comment.created_at.strftime('%Y/%m/%d') %>
+            </div>
+            <div class="col-1">
+              <%= link_to 'Delete', admin_post_comment_path(post_comment), method: :delete, data: { confirm: "Are you sure you want to delete?" } %>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  <% end %>
+</table>

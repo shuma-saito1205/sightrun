@@ -1,0 +1,26 @@
+
+<div class="error message mt-4 mb-4">
+  <% if event.errors.any? %>
+    <%= event.errors.count %>error occurred!
+    <ul>
+      <% event.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
+
+<div class="from mt-5">
+  <%= form_with model: event, url: admin_events_path, method: :post do |f| %>
+  <%= f.label :Title %>
+  <%= f.text_field :title, class: "form-control mb-3" %>
+  <%= f.label :Detail %>
+  <%= f.text_field :detail, class: "form-control mb-3" %>
+  <%= f.label :Schedule %></br>
+  <%= f.datetime_select :start, class: "form-control mb-3", options: { ampm: true } %><br>
+  <%= f.datetime_select :end, class: "form-control mb-3", options: { ampm: true } %></br>
+  <%= f.label :Location, class:"mt-3" %>
+  <%= f.text_field :location, class: "form-control mb-3" %>
+  <button class="btn btn-outline-success btn-block mt-5" type="submit">Create</button>
+  <% end %>
+</div>

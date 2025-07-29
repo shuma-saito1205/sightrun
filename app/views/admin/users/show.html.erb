@@ -1,13 +1,36 @@
-<div>
-  <h3><%= @user.name %></h3>
-  <%= image_tag @user.get_profile_image(100,100) %>
-  <p><%= link_to "Delete", admin_user_path(@user), method: :delete, data: { confirm: 'Are you sure you want to delete?' } %></p>
-</div>
-<% @posts.each do |post| %>
-  <div>
-    <p>User name：<%= post.user.name %></p> 
-    <p>Title：<%= post.title %></p>
-    <p>Body：<%= post.body %></p>
-    <p><%= "#{post.post_comments.count} comment" %></p>
+<div class="container-floid m-5 bg-white">
+  <div class="row justify-content-center mb-3 mt-4">
+    <%= image_tag @user.get_profile_image(100,100), class: "rounded-circle", style: "width: 130px; height: 130px;" %>
   </div>
-<% end %>
+  <div class="row justify-content-center mt-4">
+    <h3><%= @user.name %></h3>
+  </div>
+  <div class="row justify-content-center mt-3 pb-3">
+    <%= link_to "Delete", admin_user_path(@user), class:"btn btn-outline-dark", role: 'button', method: :delete, data: { confirm: 'Are you sure you want to delete?' } %>
+  </div>
+
+  <h3 class="text-center pt-5">- Post index -</h3>
+  <div class="row justify-content-center">
+    <div class="col-8 mt-3">
+      <table class="table table-hover table-responsive-sm">
+        <% @posts.reverse_each do |post| %>
+        <tbody class="table-group-divider">
+          <tr>
+            <td>
+              <p>Title：<%= post.title %></p>
+              <p class="wrap-text" style="word-break: break-all;">
+                Body：<%= post.body.truncate(50) %></p>
+              <div class="row">
+                <div class="col-4"><%= post.user.name %>さん</div>
+                <div class="col-3">
+                  <i class="fa-regular fa-comment"></i>&emsp;
+                  <%= "#{post.post_comments.count}" %>comments</div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      <% end %>
+      </table>
+    </div>
+  </div>
+</div>
