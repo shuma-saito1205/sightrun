@@ -1,13 +1,32 @@
-<h1>New Favorite course</h1>
-<%= link_to '登録コースを確認', user_roots_path(current_user) %>
-<div class="container">
-  <div id="map"></div>
+<div class="container-floid m-5">
+  <h3 class="text-center mb-4 mt-5">-New Favorite course-</h3>
+
+  <div class="row justify-content-center pt-3">
+    <div class="col-md-5">
+      <h1 class="display-4" style="font-size: 30px;">
+        「あなただけの<br>&emsp;&emsp;お気に入りコースを設定しよう！」</h1>
+      <p class="text pt-5 pb-5">
+      1. 右のマップでスタート地点をクリックしピンを立てる。</br>
+      2. 曲がった箇所ごとに再度クリックしピンを立てる。</br>
+      3. 最後にゴール地点をクリックしてピンを立てたら完成！</br>
+      <br>
+        下のボタンからコースに間違いがないか確認してください。</br>
+      </p>
+      <%= link_to 'Check the course', user_roots_path(current_user), class: 'btn btn-outline-success btn-block mt-3' %>
+    </div>
+
+    <div class="col-md-7 pt-5">
+      <div class="container">
+        <div id="map"></div>       
+      </div>
+
+      <script>
+        const currentUserId = <%= current_user.id %>;
+      </script>
+
+      <%= javascript_pack_tag 'map', 'data-turbolinks-track': 'reload' %>
+    </div>
+  </div>
 </div>
-
-<script>
-  const currentUserId = <%= current_user.id %>;
-</script>
-
-<%= javascript_pack_tag 'map', 'data-turbolinks-track': 'reload' %>
 
 

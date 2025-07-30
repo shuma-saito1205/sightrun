@@ -4,10 +4,16 @@ class GroupsController < ApplicationController
 
   def index
     @groups = Group.all
+    if params[:id].present?
+      set_group
+    else
+      @group = Group.new
+    end
   end
 
   def show
     @group = Group.find(params[:id])
+    @permits = @group.permits.all
   end
 
   def new
@@ -29,8 +35,8 @@ class GroupsController < ApplicationController
   end
 
   def update
-    group = Group.find(params[:id])
-    if group.update(group_params)
+    @group = Group.find(params[:id])
+    if @group.update(group_params)
       redirect_to group_path
     else
       render 'edit'

@@ -1,40 +1,100 @@
-<div>
-  <p>User pic：<%= image_tag @post.user.get_profile_image(100,100) %></p>
-  <p>User name：<%= link_to user_path(@user) do %>
-    <%= @post.user.name %>
-  <% end %></p>
-  <p>title：<%= @post.title %></p>
-  <p>body：<%= @post.body %></p>
-  <p>投稿日時：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
-  <% if @post.user == current_user %>
-    <%= link_to "Edit", edit_post_path(@post) %>
-    <%= link_to "Delete", post_path(@post), method: :delete, data: {confirm: "Are you sure you want to delete?"} %>
-  <% end %>
-</div>
+<div class="container">
+  <h3 class="text-center mb-4 mt-5">-Post-</h3>
+  <div class="row justify-content-center">
+    <div class="col-2">
+      <%= image_tag @post.user.get_profile_image(100,100), class: "rounded-circle", style: "width: 80px; height: 80px;" %>
+    </div>
+    <div class="col-6">
+      <p><%= link_to user_path(@user), style:"color: #28a745;" do %>
+        <%= @post.user.name %>
+      <% end %></p>
+      <p><%= @post.created_at.strftime('%Y/%m/%d %H:%M:%S') %>&emsp;
+      <%= @post.post_comments.count %>comments</p>
+    </div>
+  </div>
 
+  <div class="row justify-content-center mt-3">
+    <h1 class="display-4 mt-5"><%= @post.title %></h1>
+  </div>
+  <div class="row justify-content-center mt-5">
+    <div class="col-10">
+      <p class="wrap-text mt-2 text-center" style="word-break: break-all;"><%= @post.body %></p>
+    </div>
+  </div>
 
-<div>
-  <p>comment：<%= @post.post_comments.count %></p>
-  <% @post.post_comments.each do |post_comment| %>
-    <p><%= image_tag post_comment.user.get_profile_image(100,100) %></p>
-    <%= post_comment.user.name %>
-    <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
-    <% if post_comment.user == current_user %>
-      <%= link_to "Delete", post_post_comment_path(post_comment.post, post_comment), method: :delete, data: {confirm: "Are you sure you want to delete?"} %>
+  <div class="row justify-content-center mt-3">
+    <% if @post.user == current_user %>
+      <%= link_to "Edit", edit_post_path(@post), class: 'nav-link text-success'%>&emsp;&emsp;
+      <%= link_to "Delete", post_path(@post), class: 'nav-link text-success', method: :delete, data: {confirm: "Are you sure you want to delete?"} %>
     <% end %>
+  </div>
+
+  <div class="row justify-content-center">
+    <h6 class="text-center mb-4 mt-5">-Comment-</h6>
+  </div>
+
+  <div class="row justify-content-center">
+  <% if @post.present? %>
+    <div class="col-8 mt-3">
+      <table class="table table-hover table-responsive-sm">
+        <% @post.post_comments.reverse_each do |post_comment| %>
+          <tbody class="table-group-divider">
+            <tr>
+              <th scope="row">
+                <%= image_tag post_comment.user.get_profile_image(100,100), class: "rounded-circle", style: "width: 80px; height: 80px;" %>
+              </th>
+              <td>
+                <p class="wrap-text"></p>
+                <div class="row mb-3">
+                  <%= post_comment.comment %>
+                </div>
+                <div class="row mt-2">
+                  <div class="col-5 text-left">
+                    <%= link_to user_path(post_comment.user), style:"color: #28a745;" do %>
+                      <%= post_comment.user.name %>
+                    <% end %>さん
+                  </div>
+                  <div class="col-3">
+                    <%= post_comment.created_at.strftime('%Y/%m/%d') %>
+                  </div>
+                  <div class="col-1">
+                    <% if post_comment.user == current_user %>
+                      <%= link_to "Delete", post_post_comment_path(post_comment.post, post_comment), method: :delete, data: {confirm: "Are you sure you want to delete?"} %>
+                    <% end %>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        <% end %>
+      </table>
+    </div>
+  <% else %>
+    <p>No comment</p>
   <% end %>
-</div>
-<% if @error_comment.present? %>
-  <%= @error_comment.errors.count %>error occurred.
-  <ul>
-    <% @error_comment.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="error message mt-4 mb-4">
+      <% if @error_comment.present? %>
+        <%= @error_comment.errors.count %>error occurred.
+        <ul>
+          <% @error_comment.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+  
+  <div class="row justify-content-center mb-5">
+  <div class="col-5 mt-4">
+    <div class="from">
+    <%= form_with model: [@post, @post_comment] do |f| %>
+      <%= f.text_area :comment, class: "form-control mb-3", style:"height: 100px;", rows: '5', placeholder: "comment here" %>
+      <button class="btn btn-outline-success btn-block mt-3" type="submit">Send</button>
     <% end %>
-  </ul>
-<% end %>
-<div>
-  <%= form_with model: [@post, @post_comment] do |f| %>
-    <%= f.text_area :comment, rows: '5', placeholder: "comment here" %>
-    <%= f.submit "send" %>
-  <% end %>
+    </div>
+  </div>
+  </div>
 </div>

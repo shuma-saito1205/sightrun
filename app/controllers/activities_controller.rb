@@ -35,6 +35,11 @@ class ActivitiesController < ApplicationController
     total_minutes = '%02d' % ((@total_hour % 3600) / 60)
     total_seconds = '%02d' % (@total_hour % 60)
     @total_time = "#{total_hours}:#{total_minutes}:#{total_seconds}"
+    if params[:id].present?
+      set_activity
+    else
+      @activity = Activity.new
+    end
   end
 
   def destroy

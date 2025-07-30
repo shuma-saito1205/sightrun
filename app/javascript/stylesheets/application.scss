@@ -1,7 +1,38 @@
 @use '~bootstrap/scss/bootstrap';
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #6c6c6b;
+}
+
+header {
+  width: 100%;
+  padding: 0 0;
+  margin: 0 auto;
+  text-align: center;
+
+}
 
 #map {
   width: 100%;
   height: calc(100vh - 88px - 179px);
+}
+
+.jumbotron {
+  height: 400px;
+  background-image: url(../images/run2.jpg);
+  background-size: cover;
+  background-position: center;
+}
+
+
+footer {
+  width: 100%;
+  height: 60px;
+  text-align: center;
+  line-height: 80px;
+  border-top: 1px solid lightgray;
+  font-size: small;
 }

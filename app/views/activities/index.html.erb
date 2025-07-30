@@ -1,22 +1,50 @@
-<h1>Activity Top</h1>
-<%= link_to 'Favorite course', user_roots_path(current_user) %><br>
-<%= render 'new', activity: @activity %>
+<div class="container-floid m-5">
+  <h3 class="text-center mb-5">-Activity Top-</h3>
 
+    <div class="row justify-content-center mb-4" style="padding-top: 30px; padding-bottom: 30px;">
+      <h1 class="display-4">
+        <%= number_with_precision(@total_mileage, precision: 2) %>km&emsp;&emsp;<%= @total_time %>時間
+      </h1>
+    </div>
 
-<h3>・Total activity<h3>
-<%= "#{@total_mileage} km    #{@total_time} " %>
+    <div class="row justify-content-center">
 
-<h3>・Activity index</h3>
-<% if @activities.present? %>
-  <% @activities.each do |activity| %>
-    <%= activity.mileage %> km 
-    <% hours = '%02d' % (activity.hour.to_i / 3600) %>
-    <% minutes = '%02d' % ((activity.hour.to_i % 3600) / 60) %>
-    <% seconds = '%02d' % (activity.hour.to_i % 60) %>
-    <%= hours %>:<%= minutes %>:<%= seconds %>
-    <p>Date：<%= activity.created_at.strftime('%Y/%m/%d') %></p>
-    
-  <% end %>
-<% else %>
-  <p>No activity</p>
-<% end %>
+      <div class="col-md-4">
+        <%= render 'new', activity: @activity %><br>
+      </div>
+
+      <div class="offset-md-1"></div>
+
+      <div class="col-md-7">
+        <h5 class="text-center mb-4">Activity index</h5>
+        <div class="scrollable-container" style="height: 300px; overflow-y: scroll;">
+        <table class="table table-hover table-responsive-sm">
+        <% if @activities.present? %>
+          <% @activities.reverse_each do |activity| %>
+          <tbody class="table-group-divider">
+            <tr>
+              <td>
+                <p>Date：<%= activity.created_at.strftime('%Y/%m/%d') %></p>
+                <div class="row">
+                  <div class="col"><%= activity.mileage %> km </div>
+                  <div class="col">
+                    <% hours = '%02d' % (activity.hour.to_i / 3600) %>
+                    <% minutes = '%02d' % ((activity.hour.to_i % 3600) / 60) %>
+                    <% seconds = '%02d' % (activity.hour.to_i % 60) %>
+                    <%= hours %>:<%= minutes %>:<%= seconds %>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+          <% end %>
+        <% else %>
+          <p class="text-center">No activity</p>
+        <% end %>
+        </table>
+        </div>
+      </div>
+
+    </div>
+
+</div>

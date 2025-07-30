@@ -8,13 +8,23 @@
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
-<body>
-  <% if admin_signed_in? %>
-    <div class="text-right">
-      <%= link_to 'Log out', destroy_admin_session_path, method: :delete %>
-    </div>
-    <h1><%= link_to 'Admin', admin_path %></h1>
-  <% end %>
+<body class="d-flex flex-column">
+  <header class="shadow">
+    <nav class="navbar navbar-expand-xl navbar-light border-bottom">
+      <div class="container-fluid">
+        <a class="navbar-brand text-dark" href="/admin">-Sight Run Admin-</a>
+        <% if admin_signed_in? %>
+          <div class="text-right">
+            <%= link_to 'Log out', destroy_admin_session_path, method: :delete %>
+          </div>
+        <% end %>
+      </div>
+    </nav>
+  </header>
+
+  <main>
   <%= yield %>
-</body>
+  </main
+  
+</body> 
 </html>
