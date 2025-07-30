@@ -7,19 +7,21 @@
 
 <div class="col-md-5 mt-3">
   <h5 class="text-center mb-4 mt-5">-All events-</h5>
+  <div class="scrollable-container" style="height: 500px; overflow-y: scroll;">
     <table class="table table-hover table-responsive-sm">
       <% @events.reverse_each do |event| %>
       <tbody class="table-group-divider">
         <tr>
           <td>
-            <p>・Title<%= event.title %></p>
-            <h3>・Detail<%= event.detail %></h3>
-            <h3>・Schedule<%= event.start %> ~ <%= event.end %></h3>
-            <h3>・Location<%= event.location %></h3>
+            <p>・Title：<%= event.title %></p>
+            <p>・Detail<%= event.detail %></p>
+            <p>・Schedule<%= event.start %> ~ <%= event.end %><p>
+            <p>・Location<%= event.location %></p>
             <%= link_to 'Delete', admin_event_path(event), method: :delete, data: {confirm: "Are you sure you want to delete?"} %>
           </td>
         </tr>
       </tbody>
       <% end %>
     </table>
+  </div>
 </div>

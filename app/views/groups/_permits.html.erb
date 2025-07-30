@@ -1,5 +1,6 @@
 
       <h6 class="text-center mb-4 mt-5">-Weiting member-</h6>
+      <div class="scrollable-container" style="height: 200px; overflow-y: scroll;">
         <table class="table table-hover table-responsive-sm">
         <% if permits.present? %>
           <% permits.each do |permit| %>
@@ -21,6 +22,7 @@
           <p class="text-center">No member</p>
         <% end %>
         </table>
+      </div>
 
 
 

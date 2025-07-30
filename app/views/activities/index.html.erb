@@ -17,6 +17,7 @@
 
       <div class="col-md-7">
         <h5 class="text-center mb-4">Activity index</h5>
+        <div class="scrollable-container" style="height: 300px; overflow-y: scroll;">
         <table class="table table-hover table-responsive-sm">
         <% if @activities.present? %>
           <% @activities.reverse_each do |activity| %>
@@ -41,6 +42,7 @@
           <p class="text-center">No activity</p>
         <% end %>
         </table>
+        </div>
       </div>
 
     </div>

@@ -10,28 +10,14 @@ class Admin::EventsController < ApplicationController
     @event = Event.new(event_params)
     @event.admin_id = current_admin.id
     if @event.save
-      redirect_to admin_events_path
+      redirect_to admin_path
     else
-      render 'new'
+      render 'homes/top'
     end
   end
 
   def index
     @events = Event.all
-  end
-
-  def show
-    @event = Event.find(params[:id])
-  end
-
-  def edit
-    @event = Event.find(params[:id])
-  end
-
-  def update
-    event = Event.find(params[:id])
-    event.update
-    redirect_to admin_event_path(event.id)
   end
 
   def destroy
