@@ -11,14 +11,14 @@ admin = Admin.find_or_create_by!(email: "admin@example.com") do |admin|
   admin.password_confirmation = "password"
 end
 
-shuma = User.find_or_create_by!(email: "shuma@gmail.com") do |user|
-  user.name = "shuma"
-  user.password = "shuma11"
-  user.password_confirmation = "shuma11"
-end
+# shuma = User.find_or_create_by!(email: "shuma@gmail.com") do |user|
+#   user.name = "shuma"
+#   user.password = "shuma11"
+#   user.password_confirmation = "shuma11"
+# end
 
-saito = User.find_or_create_by!(email: "saito@gmail.com") do |user|
-  user.name = "saito"
-  user.password = "saito11"
-  user.password_confirmation = "saito11"
-end
+# saito = User.find_or_create_by!(email: "saito@gmail.com") do |user|
+#   user.name = "saito"
+#   user.password = "saito11"
+#   user.password_confirmation = "saito11"
+# end

@@ -2,7 +2,9 @@
 
 <div class="row justify-content-center pt-3">
   <% if user.present? && user.course_introduction.present?%>
+    <div tyle="white-space: pre-line;>
     <%= user.course_introduction %>
+    </div>
   <% else %>
     <p class="text-center">Not seting introduction</p>
   <% end %>
