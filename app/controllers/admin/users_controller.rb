@@ -10,7 +10,8 @@ class Admin::UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-    redirect_to admin_dashboards_path, notice: 'Delete user'
+    flash[:notice] = "Delete user"
+    redirect_to admin_path
   end
 
 end

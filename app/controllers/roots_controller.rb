@@ -26,6 +26,13 @@ class RootsController < ApplicationController
     @user = User.find(params[:user_id])
     @roots = @user.roots
   end
+
+  def destroy
+    root = Root.find(params[:id])
+    @user = User.find(params[:user_id])
+    root.destroy
+    redirect_to user_roots_path(current_user)
+  end
   
 private
 

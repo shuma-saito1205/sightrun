@@ -29,12 +29,6 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
-  def destroy
-    post = Post.find(params[:id])
-    post.destroy
-    redirect_to user_path(current_user.id)
-  end
-
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
