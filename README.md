@@ -22,7 +22,11 @@
 - ランニングイベントを確認する時
 ​
 ## 設計書
-後ほど作成予定
+- WBS https://docs.google.com/spreadsheets/d/1rFA2a-e8Dn9nm-rA1ldemfW_OrfD1VgN3tReiu8iqzY/edit?usp=sharing
+- テーブル定義書　https://docs.google.com/spreadsheets/d/1gY7RIB_OyGJdmGvksmSOykCHiOC2mQ1J1i7zMMRRflg/edit?usp=sharing
+- ER図　https://drive.google.com/file/d/1qMVwcNj9p3Y8zEnOKzSWT7J4hPLK2Fqo/view?usp=sharing
+- 詳細設計書　https://docs.google.com/spreadsheets/d/1MSVlhuJZHTDwHzEsmWeFvDYcwaWrVt5Hukm8P9Tzahs/edit?usp=drive_link
+- テスト仕様書　https://docs.google.com/spreadsheets/d/1su2wI9lEDvZeBtaBo9h0Ji2bB2UJz1y5yM3ya9MrKio/edit?usp=sharing
 ​
 ## 開発環境
 - OS：Linux(CentOS)
