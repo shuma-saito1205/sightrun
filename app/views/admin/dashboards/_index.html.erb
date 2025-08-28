@@ -1,5 +1,6 @@
 <div class="scrollable-container" style="height: 500px; overflow-y: scroll;">
 <table class="table table-hover table-responsive-sm">
+  <% if users.present? %>
   <% users.reverse_each do |user| %>
     <tbody class="table-group-divider border-top-color-black">
       <tr>
@@ -21,6 +22,7 @@
         </td>
       </tr>
     </tbody>
+  <% end %>
   <% end %>
 </table>
 </div>
