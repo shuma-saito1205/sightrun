@@ -13,7 +13,7 @@ class Admin::EventsController < ApplicationController
       flash[:notice] = "Create event!"
       redirect_to admin_path
     else
-      flash.now[:notice] = "Uncreate event"
+      flash[:notice] = "Uncreate event"
       render 'admin/homes/top'
     end
   end
