@@ -5,7 +5,7 @@
   </div>
   <div class="row justify-content-center mt-5">
     <div class="col-10">
-      <p class="wrap-text mt-2 text-center" style="word-break: break-all;"><%= @group.theme %></p>
+      <%= simple_format(@group.theme, sanitize: true, class:"wrap-text mt-2 text-left",style:"word-break: break-all;" ) %>
     </div>
   </div>
 

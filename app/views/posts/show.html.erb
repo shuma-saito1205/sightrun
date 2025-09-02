@@ -46,7 +46,7 @@
               <td>
                 <p class="wrap-text"></p>
                 <div class="row mb-3">
-                  <%= post_comment.comment %>
+                  <%= simple_format(post_comment.comment, sanitize: true, class:"wrap-text mt-2 text-left",style:"word-break: break-all;") %>
                 </div>
                 <div class="row mt-2">
                   <div class="col-5 text-left">
