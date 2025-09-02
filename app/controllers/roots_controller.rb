@@ -1,5 +1,6 @@
 class RootsController < ApplicationController
   before_action :set_root, only: [:new, :create]
+  before_action :is_matching_login_user
 
   def new
     @root = Root.new
@@ -47,6 +48,13 @@ private
     params.require(:root).permit(:user_id, :latitude, :longitude)
   end
 
+  def is_matching_login_user
+    user = User.find(params[:user_id])
+    unless user.id == current_user.id
+      redirect_to user_path(current_user)
+    end
+  end
+  
 end
 
 
